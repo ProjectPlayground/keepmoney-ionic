@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import {Platform, Events} from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import {WelcomeTabsPage} from '../pages/tabs/welcome/welcome.tabs'
@@ -12,13 +12,14 @@ import {TranslateService} from 'ng2-translate/ng2-translate';
 export class MyApp {
   rootPage = WelcomeTabsPage;
 
-  constructor(platform: Platform, private translateService: TranslateService) {
+  constructor(platform: Platform, private translateService: TranslateService, events: Events) {
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
       Splashscreen.hide();
       this.initializeTranslateServiceConfig();
+      /*this.events.subscribe('user:login', () => {
+
+      });*/
     });
   }
 

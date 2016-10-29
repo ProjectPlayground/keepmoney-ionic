@@ -8,6 +8,8 @@ import {WelcomeTabsPage} from '../pages/tabs/welcome/welcome.tabs'
 import { UserProvider } from '../providers/user'
 import {TranslateService, TranslateModule, TranslateStaticLoader, TranslateLoader} from "ng2-translate";
 import {Http} from "@angular/http";
+import {OperationsPage} from "../pages/operations/operations";
+import {BoardTabsPage} from "../pages/tabs/board/board.tabs";
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import {Http} from "@angular/http";
     HomePage,
     LoginPage,
     SignUpPage,
-    WelcomeTabsPage
+    WelcomeTabsPage,
+    BoardTabsPage,
+    OperationsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -31,7 +35,9 @@ import {Http} from "@angular/http";
     HomePage,
     LoginPage,
     SignUpPage,
-    WelcomeTabsPage
+    WelcomeTabsPage,
+    BoardTabsPage,
+    OperationsPage
   ],
   providers: [TranslateService, UserProvider]
 })
