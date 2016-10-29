@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { LoginPage } from '../../login/login';
 import { SignUpPage } from '../../signup/signup';
+import {TranslateService} from "ng2-translate";
 
 @Component({
   templateUrl: 'welcome.tabs.html'
@@ -12,7 +13,6 @@ export class WelcomeTabsPage {
   loginPage: any = LoginPage;
   signupPage: any = SignUpPage;
 
-  constructor() {
-
+  constructor(public translate: TranslateService) {
   }
 }

@@ -1,17 +1,15 @@
 <ion-content padding>
-  <h1>
-    Create new account in Keep Money.
-  </h1>
+  <h1>{{'PAGE.SIGN_UP.WELCOME_TITLE' | translate}}</h1>
   <form [formGroup]="signUpForm">
 
     <ion-list>
       <ion-item>
-        <ion-label fixed>Phone</ion-label>
+        <ion-label fixed>{{'Phone' | translate}}</ion-label>
         <ion-input #phone formControlName="phone" type="text" minlength="7" maxlength="12" required="required" [(ngModel)]="user.phone"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label fixed>Pincode</ion-label>
+        <ion-label fixed>{{'Pincode' | translate}}</ion-label>
         <ion-input #pin formControlName="pin" type="text" minlength="4" maxlength="4" required="required" [(ngModel)]="user.pin"></ion-input>
       </ion-item>
     </ion-list>
