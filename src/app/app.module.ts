@@ -6,6 +6,8 @@ import {LoginPage} from '../pages/login/login'
 import {SignUpPage} from '../pages/signup/signup'
 import {WelcomeTabsPage} from '../pages/tabs/welcome/welcome.tabs'
 import { UserProvider } from '../providers/user'
+import {TranslateService, TranslateModule, TranslateStaticLoader, TranslateLoader} from "ng2-translate";
+import {Http} from "@angular/http";
 
 @NgModule({
   declarations: [
@@ -16,7 +18,12 @@ import { UserProvider } from '../providers/user'
     WelcomeTabsPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    TranslateModule.forRoot({
+      provide: TranslateLoader,
+      useFactory: (createTranslateLoader),
+      deps: [Http]
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -26,6 +33,10 @@ import { UserProvider } from '../providers/user'
     SignUpPage,
     WelcomeTabsPage
   ],
-  providers: [UserProvider]
+  providers: [TranslateService, UserProvider]
 })
 export class AppModule {}
+
+export function createTranslateLoader(http: Http) {
+  return new TranslateStaticLoader(http, './assets/i18n', '.json');
+}

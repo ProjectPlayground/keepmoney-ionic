@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import {NavController, LoadingController} from 'ionic-angular';
-import { UserProvider} from '../../providers/user'
-import { IUser } from '../../interfaces/user.interface'
+import {NavController, LoadingController, AlertController} from 'ionic-angular';
+import {UserProvider} from '../../providers/user'
+import {IUser} from '../../interfaces/user.interface'
 import {User} from "../../user.model";
 import {FormBuilder} from "@angular/forms";
+import {TranslateService} from "ng2-translate";
 
 @Component({
   selector: 'page-sign-up',
@@ -14,7 +15,12 @@ export class SignUpPage {
   public user: IUser = new User("", "");
   public signUpForm:any;
 
-  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, private userProvider: UserProvider, private formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController,
+              public loadingCtrl: LoadingController,
+              private userProvider: UserProvider,
+              private formBuilder: FormBuilder,
+              private alertController:AlertController,
+              public translate: TranslateService) {
     this.signUpForm = formBuilder.group({ phone: [''], pin: ['']});
   }
 
@@ -33,10 +39,12 @@ export class SignUpPage {
       },
     err => {
       loader.dismissAll();
-      console.log(err);
+      this.alertController.create({
+        title: "Error",
+        message: err.message
+      }).present();
       },
       () => console.log('Account creation complete')
     );
-
   }
 }
