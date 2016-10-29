@@ -4,12 +4,12 @@
 
     <ion-list>
       <ion-item>
-        <ion-label fixed>{{'Phone' | translate}}</ion-label>
+        <ion-label fixed>{{'PHONE' | translate}}</ion-label>
         <ion-input #phone formControlName="phone" type="text" minlength="7" maxlength="12" required="required" [(ngModel)]="user.phone"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label fixed>{{'Pincode' | translate}}</ion-label>
+        <ion-label fixed>{{'PINCODE' | translate}}</ion-label>
         <ion-input #pin formControlName="pin" type="text" minlength="4" maxlength="4" required="required" [(ngModel)]="user.pin"></ion-input>
       </ion-item>
     </ion-list>
