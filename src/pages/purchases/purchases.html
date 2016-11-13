@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{'PAGE.OPERATIONS.PAGE_TITLE' | translate}}
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addNew()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+ <ion-item-group *ngFor="let group of groupedPurchases">
+   <ion-item-divider light><b>{{group.header | date:'dd.MM.yyyy'}}</b></ion-item-divider>
+   <ion-item *ngFor="let purchase of group.collection" class="purchase-item">
+     {{purchase.title}} <ion-badge item-right>{{purchase.amount}}</ion-badge>
+   </ion-item>
+
+  </ion-item-group>
+</ion-content>

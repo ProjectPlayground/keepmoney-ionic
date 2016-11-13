@@ -34,8 +34,6 @@ export class UserProvider {
   }
 
   isLoggedIn():boolean {
-    console.log('isLogged');
-    console.log(JSON.parse(window.localStorage.getItem('user')));
     return !!window.localStorage.getItem('user');
   }
 

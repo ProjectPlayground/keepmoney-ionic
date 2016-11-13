@@ -9,8 +9,11 @@ import {WelcomeTabsPage} from '../pages/tabs/welcome/welcome.tabs'
 import { HomePage } from '../pages/home/home';
 import {LoginPage} from '../pages/login/login'
 import {SignUpPage} from '../pages/signup/signup'
-import {OperationsPage} from "../pages/operations/operations";
+import {PurchasesPage} from "../pages/purchases/purchases";
 import {BoardTabsPage} from "../pages/tabs/board/board.tabs";
+import {PurchaseCreateEditModal} from "../modals/purchase/create-edit/purchase.modal";
+import {MomentModule} from "angular2-moment";
+import {PurchaseProvider} from "../providers/purchase";
 
 @NgModule({
   declarations: [
@@ -20,7 +23,8 @@ import {BoardTabsPage} from "../pages/tabs/board/board.tabs";
     SignUpPage,
     WelcomeTabsPage,
     BoardTabsPage,
-    OperationsPage
+    PurchasesPage,
+    PurchaseCreateEditModal
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -28,7 +32,8 @@ import {BoardTabsPage} from "../pages/tabs/board/board.tabs";
       provide: TranslateLoader,
       useFactory: (createTranslateLoader),
       deps: [Http]
-    })
+    }),
+    MomentModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -38,9 +43,10 @@ import {BoardTabsPage} from "../pages/tabs/board/board.tabs";
     SignUpPage,
     WelcomeTabsPage,
     BoardTabsPage,
-    OperationsPage
+    PurchasesPage,
+    PurchaseCreateEditModal
   ],
-  providers: [TranslateService, UserProvider]
+  providers: [TranslateService, UserProvider, PurchaseProvider]
 })
 export class AppModule {}
 
