@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 import {PurchaseCreateEditModal} from '../../modals/purchase/create-edit/purchase.modal'
 import {NavController, ModalController} from 'ionic-angular';
-import {IPurchase} from "../../interfaces/purchase.interface";
 import {PurchaseProvider} from "../../providers/purchase";
 import _ from 'underscore';
 import Dictionary = _.Dictionary;
 
 @Component({
   selector: 'page-purchases',
-  templateUrl: 'purchases.html'
+  templateUrl: 'purchases.html',
 })
 export class PurchasesPage {
   public purchases:any;

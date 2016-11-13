@@ -14,6 +14,7 @@ import {BoardTabsPage} from "../pages/tabs/board/board.tabs";
 import {PurchaseCreateEditModal} from "../modals/purchase/create-edit/purchase.modal";
 import {MomentModule} from "angular2-moment";
 import {PurchaseProvider} from "../providers/purchase";
+import {ArrayFilterPipe} from "../pipes/array.filter.pipe";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {PurchaseProvider} from "../providers/purchase";
     WelcomeTabsPage,
     BoardTabsPage,
     PurchasesPage,
-    PurchaseCreateEditModal
+    PurchaseCreateEditModal,
+    ArrayFilterPipe,
   ],
   imports: [
     IonicModule.forRoot(MyApp),
