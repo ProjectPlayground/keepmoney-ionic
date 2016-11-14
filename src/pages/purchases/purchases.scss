@@ -1,5 +1,17 @@
-page-home {
+page-purchases {
+  .purchases-content {
+    background-color: #e5dca3;
+  }
+
+  .item-divider {
+    margin-top: 15px;
+  }
+
   .purchase-item {
 
+  }
+  .purchases-divider {
+    margin-left: 5px;
+    font-weight: bold;
   }
 }

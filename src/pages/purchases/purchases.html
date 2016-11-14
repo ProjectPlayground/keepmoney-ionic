@@ -11,10 +11,14 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="purchases-content">
 
  <ion-item-group *ngFor="let group of groupedPurchases">
-   <ion-item-divider light><b>{{group.header | date:'dd.MM.yyyy'}}</b></ion-item-divider>
+   <ion-item-divider light class="item-divider">
+     <ion-icon name="calendar"></ion-icon>
+     <span class="purchases-divider">{{group.header | date:'dd.MM.yyyy'}}</span>
+     <span item-right>Сума</span>
+   </ion-item-divider>
    <ion-item *ngFor="let purchase of group.collection" class="purchase-item">
      {{purchase.title}} <ion-badge item-right>{{purchase.amount}}</ion-badge>
    </ion-item>
