@@ -15,17 +15,25 @@ import {PurchaseCreateEditModal} from "../modals/purchase/create-edit/purchase.m
 import {MomentModule} from "angular2-moment";
 import {PurchaseProvider} from "../providers/purchase";
 import {ArrayFilterPipe} from "../pipes/array.filter.pipe";
+import {TagsPopover} from "../popovers/tags/tags.popover";
+import {TagsProvider} from "../providers/tags";
+import {PurchasePageProvider} from "../providers/purchase.page";
 
 @NgModule({
   declarations: [
     MyApp,
+
+    WelcomeTabsPage,
     HomePage,
     LoginPage,
     SignUpPage,
-    WelcomeTabsPage,
+
     BoardTabsPage,
     PurchasesPage,
+
     PurchaseCreateEditModal,
+
+    TagsPopover,
     ArrayFilterPipe,
   ],
   imports: [
@@ -40,15 +48,20 @@ import {ArrayFilterPipe} from "../pipes/array.filter.pipe";
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+
+    WelcomeTabsPage,
     HomePage,
     LoginPage,
     SignUpPage,
-    WelcomeTabsPage,
+
     BoardTabsPage,
     PurchasesPage,
-    PurchaseCreateEditModal
+
+    PurchaseCreateEditModal,
+
+    TagsPopover,
   ],
-  providers: [TranslateService, UserProvider, PurchaseProvider]
+  providers: [TranslateService, UserProvider, PurchaseProvider, TagsProvider, PurchasePageProvider]
 })
 export class AppModule {}
 

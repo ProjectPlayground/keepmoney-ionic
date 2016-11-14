@@ -1,9 +1,12 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      {{'PAGE.OPERATIONS.PAGE_TITLE' | translate}}
+      {{'PAGE.PURCHASES.PAGE_TITLE' | translate}}
     </ion-title>
     <ion-buttons end>
+      <button ion-button icon-only (click)="showTagsPopover()">
+        <ion-badge color="danger" item-right>{{'PAGE.PURCHASES.TAGS' | translate}} ({{tags.length || 0}})</ion-badge>
+      </button>
       <button ion-button icon-only (click)="addNew()">
         <ion-icon name="add"></ion-icon>
       </button>
