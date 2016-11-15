@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
 import {Platform, NavParams, ViewController, AlertController, LoadingController} from 'ionic-angular';
-import {TranslateService} from "ng2-translate";
 import {FormBuilder} from "@angular/forms";
 import {PurchaseProvider} from "../../../providers/purchase";
 @Component({

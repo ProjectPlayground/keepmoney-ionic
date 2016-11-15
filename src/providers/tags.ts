@@ -3,7 +3,6 @@ import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs";
-import {DateTime} from "ionic-angular";
 
 @Injectable()
 export class TagsProvider {
@@ -14,7 +13,7 @@ export class TagsProvider {
   create(name:string):any {
     var json = JSON.stringify({ name: name});
 
-    return this.http.post('/api/tags',
+    return this.http.post('http://6778586a.ngrok.io/tags',
       json, {
         headers: this.headers()
       })
@@ -26,6 +25,7 @@ export class TagsProvider {
     var headers = new Headers();
     var token = JSON.parse(window.localStorage.getItem('user'))['token'];
     headers.append('Content-Type', 'application/json');
+    headers.append('Access-Control-Allow-Origin', '*');
     headers.append('Authorization', token);
     return headers;
   }

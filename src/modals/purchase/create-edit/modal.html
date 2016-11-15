@@ -11,27 +11,27 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <form [formGroup]="tagsForm">
+  <form [formGroup]="purchaseForm">
     <ion-list>
 
       <ion-item>
         <ion-label fixed>Title</ion-label>
-        <ion-input #title formControlName="title" type="text" minlength="2" required="required" [(ngModel)]="tagsForm.title"></ion-input>
+        <ion-input #title formControlName="title" type="text" minlength="2" required="required" [(ngModel)]="purchaseForm.title"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label fixed>Amount</ion-label>
-        <ion-input #amount formControlName="amount" type="number" min="1" required="required" [(ngModel)]="tagsForm.amount"></ion-input>
+        <ion-input #amount formControlName="amount" type="number" min="1" required="required" [(ngModel)]="purchaseForm.amount"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label fixed>Date</ion-label>
-        <ion-datetime #date formControlName="date" displayFormat="MM/DD/YYYY" pickerFormat="MMMM/DD/YYYY" required="required" [(ngModel)]="tagsForm.date"></ion-datetime>
+        <ion-datetime #date formControlName="date" displayFormat="MM/DD/YYYY" pickerFormat="MMMM/DD/YYYY" required="required" [(ngModel)]="purchaseForm.date"></ion-datetime>
       </ion-item>
     </ion-list>
 
     <div padding>
-      <button ion-button full [disabled]="!tagsForm.valid" (click)="add()">Add</button>
+      <button ion-button full [disabled]="!purchaseForm.valid" (click)="add()">Add</button>
     </div>
   </form>
 

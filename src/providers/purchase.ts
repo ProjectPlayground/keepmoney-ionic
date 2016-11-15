@@ -12,7 +12,7 @@ export class PurchaseProvider {
   }
 
   getAll():any {
-    return this.http.get('/api/purchases',
+    return this.http.get('http://6778586a.ngrok.io/purchases',
       {
         headers: this.headers()
       })
@@ -23,7 +23,7 @@ export class PurchaseProvider {
   create(title:string, date:DateTime, amount:number):any {
     var json = JSON.stringify({ title: title, date: date, amount: amount});
 
-    return this.http.post('/api/purchases',
+    return this.http.post('http://6778586a.ngrok.io/purchases',
       json, {
         headers: this.headers()
       })
@@ -35,6 +35,7 @@ export class PurchaseProvider {
     var headers = new Headers();
     var token = JSON.parse(window.localStorage.getItem('user'))['token'];
     headers.append('Content-Type', 'application/json');
+    headers.append('Access-Control-Allow-Origin', '*');
     headers.append('Authorization', token);
     return headers;
   }

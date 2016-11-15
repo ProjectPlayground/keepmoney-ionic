@@ -20,9 +20,7 @@ export class MyApp {
       Splashscreen.hide();
       this.initializeTranslateServiceConfig();
       this.setUpTab();
-      /*this.events.subscribe('user:login', () => {
-
-      });*/
+      events.subscribe('user:login', () => this.setUpTab());
     });
   }
 

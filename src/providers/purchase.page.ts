@@ -3,7 +3,6 @@ import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs";
-import {DateTime} from "ionic-angular";
 
 @Injectable()
 export class PurchasePageProvider {
@@ -12,7 +11,7 @@ export class PurchasePageProvider {
   }
 
   get():any {
-    return this.http.get('/api/mobile/page/purchases',
+    return this.http.get('http://6778586a.ngrok.io/mobile/page/purchases',
       {
         headers: this.headers()
       })
@@ -24,6 +23,7 @@ export class PurchasePageProvider {
     var headers = new Headers();
     var token = JSON.parse(window.localStorage.getItem('user'))['token'];
     headers.append('Content-Type', 'application/json');
+    headers.append('Access-Control-Allow-Origin', '*');
     headers.append('Authorization', token);
     return headers;
   }

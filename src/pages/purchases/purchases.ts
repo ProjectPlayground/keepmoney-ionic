@@ -41,8 +41,10 @@ export class PurchasesPage {
   }
 
   private onModalDissmiss(response) {
-    this.purchases.push(response['purchase']);
-    this.groupList();
+    if (response && response['purchase']) {
+      this.purchases.push(response['purchase']);
+      this.groupList();
+    }
   }
 
   private groupList() {

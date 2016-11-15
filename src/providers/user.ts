@@ -13,7 +13,7 @@ export class UserProvider {
   createAccount(phone:String, pin: String):any {
     var json = JSON.stringify({ phone: phone, pin: pin});
 
-    return this.http.post('/api/users',
+    return this.http.post('http://6778586a.ngrok.io/users',
       json, {
         headers: this.headers()
       })
@@ -24,7 +24,7 @@ export class UserProvider {
   auth(phone:String, pin:String):any {
     var json = JSON.stringify({ phone: phone, pin: pin});
 
-    return this.http.post('/api/users/auth',
+    return this.http.post('http://6778586a.ngrok.io/users/auth',
       json, {
         headers: this.headers()
       })
@@ -49,6 +49,7 @@ export class UserProvider {
   private headers():Headers {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
+    headers.append('Access-Control-Allow-Origin', '*');
     return headers;
   }
 }
