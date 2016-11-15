@@ -11,8 +11,12 @@
     </ion-list>
   </form>
   <ion-list no-lines>
-    <ion-item *ngFor="let tag of tags">
-      {{tag.name}}
+    <ion-item *ngFor="let tag of tags" (click)="editMode(tag)">
+      <span *ngIf="!isInEditMode(tag._id)" class="tag-label">{{tag.name}}</span>
+      <input *ngIf="isInEditMode(tag._id)"
+             required="required" minlength="2" maxlength="30" value="{{tag.name}}"
+             [(ngModel)]="editableTagName"
+      (keyup.enter)="updateTag()"/>
     </ion-item>
   </ion-list>
 </ion-content>
