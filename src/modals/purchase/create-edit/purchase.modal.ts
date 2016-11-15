@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import {Platform, NavParams, ViewController, AlertController, LoadingController} from 'ionic-angular';
 import {FormBuilder} from "@angular/forms";
@@ -7,8 +7,10 @@ import {PurchaseProvider} from "../../../providers/purchase";
   templateUrl: 'modal.html',
   providers: [PurchaseProvider]
 })
-export class PurchaseCreateEditModal {
+export class PurchaseCreateEditModal implements OnInit{
   public purchaseForm:any;
+  public tags:any;
+
   constructor(
     public platform: Platform,
     public params: NavParams,
@@ -18,7 +20,14 @@ export class PurchaseCreateEditModal {
     public loadingCtrl: LoadingController,
     private alertController:AlertController,
   ) {
-    this.purchaseForm = formBuilder.group({ title: [''], date: [''], amount: ['']});
+    this.purchaseForm = formBuilder.group({ title: [''], date: [''], amount: [''], tagList:[]});
+    this.tags = [];
+  }
+
+  ngOnInit() {
+    if (this.params.data) {
+      this.tags = this.params.data.tags;
+    }
   }
 
   add() {
@@ -27,7 +36,7 @@ export class PurchaseCreateEditModal {
     });
     loader.present();
 
-    this.purchaseService.create(this.purchaseForm.title, this.purchaseForm.date, this.purchaseForm.amount).subscribe(
+    this.purchaseService.create(this.purchaseForm.title, this.purchaseForm.date, this.purchaseForm.amount, this.purchaseForm.tags).subscribe(
       data => {
         loader.dismissAll();
         if (data.status == 200) {

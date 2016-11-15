@@ -20,8 +20,8 @@ export class PurchaseProvider {
       .catch((error:any) => Observable.throw(error.json() || 'Server error'));
   }
 
-  create(title:string, date:DateTime, amount:number):any {
-    var json = JSON.stringify({ title: title, date: date, amount: amount});
+  create(title:string, date:DateTime, amount:number, tags:string[]):any {
+    var json = JSON.stringify({ title: title, date: date, amount: amount, tags: tags});
 
     return this.http.post('http://6778586a.ngrok.io/purchases',
       json, {

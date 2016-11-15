@@ -30,7 +30,7 @@ export class PurchasesPage {
   }
 
   addNew() {
-    let modal = this.modalCtrl.create(PurchaseCreateEditModal);
+    let modal = this.modalCtrl.create(PurchaseCreateEditModal, {tags: this.tags});
     modal.present();
     modal.onWillDismiss((response) => this.onModalDissmiss(response))
   }

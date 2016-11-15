@@ -18,6 +18,7 @@ import {ArrayFilterPipe} from "../pipes/array.filter.pipe";
 import {TagsPopover} from "../popovers/tags/tags.popover";
 import {TagsProvider} from "../providers/tags";
 import {PurchasePageProvider} from "../providers/purchase.page";
+import {OrderByPipe} from "../pipes/array.order.by.pipe";
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import {PurchasePageProvider} from "../providers/purchase.page";
 
     TagsPopover,
     ArrayFilterPipe,
+    OrderByPipe
   ],
   imports: [
     IonicModule.forRoot(MyApp),
