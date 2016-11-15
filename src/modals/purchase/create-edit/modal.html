@@ -18,7 +18,7 @@
 </ion-header>
 <ion-content>
   <form [formGroup]="purchaseForm">
-    <ion-list>
+    <ion-list no-lines>
 
       <ion-item>
         <ion-label fixed>Наименование</ion-label>
@@ -28,7 +28,7 @@
       <ion-item>
         <ion-label>Теги</ion-label>
         <ion-select #tagList formControlName="tagList" [(ngModel)]="purchaseForm.tagList" multiple="true">
-          <ion-option *ngFor="let tag of tags | orderBy:'name'">{{tag.name}}</ion-option>
+          <ion-option *ngFor="let tag of tags | orderBy:'name'" value="{{tag._id}}">{{tag.name}}</ion-option>
         </ion-select>
       </ion-item>
 

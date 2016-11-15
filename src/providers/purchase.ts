@@ -12,21 +12,14 @@ export class PurchaseProvider {
   }
 
   getAll():any {
-    return this.http.get('http://6778586a.ngrok.io/purchases',
-      {
-        headers: this.headers()
-      })
+    return this.http.get('http://6778586a.ngrok.io/purchases', {headers: this.headers()})
       .map(res => res.json())
       .catch((error:any) => Observable.throw(error.json() || 'Server error'));
   }
 
   create(title:string, date:DateTime, amount:number, tags:string[]):any {
     var json = JSON.stringify({ title: title, date: date, amount: amount, tags: tags});
-
-    return this.http.post('http://6778586a.ngrok.io/purchases',
-      json, {
-        headers: this.headers()
-      })
+    return this.http.post('http://6778586a.ngrok.io/purchases', json, {headers: this.headers()})
       .map(res => res.json())
       .catch((error:any) => Observable.throw(error.json() || 'Server error'));
   }

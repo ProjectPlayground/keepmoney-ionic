@@ -4,11 +4,13 @@
       {{'PAGE.PURCHASES.PAGE_TITLE' | translate}}
     </ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="showTagsPopover()">
-        <ion-badge color="danger" item-right>{{'PAGE.PURCHASES.TAGS' | translate}} ({{tags.length || 0}})</ion-badge>
+      <button ion-button outline item-right icon-left (click)="showTagsPopover()">
+        <ion-icon name="pricetag"></ion-icon>
+        {{'PAGE.PURCHASES.TAGS' | translate}} ({{tags.length || 0}})
       </button>
-      <button ion-button icon-only (click)="addNew()">
+      <button ion-button outline item-right icon-left (click)="addNew()">
         <ion-icon name="add"></ion-icon>
+        {{'PAGE.PURCHASES.ADD_NEW' | translate}}
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -16,14 +18,14 @@
 
 <ion-content padding class="purchases-content">
 
- <ion-item-group *ngFor="let group of groupedPurchases">
-   <ion-item-divider light class="item-divider">
+ <ion-item-group *ngFor="let group of groupedPurchases; let ind = index" no-lines>
+   <ion-item-divider light class="item-divider" [class.first]="ind == 0">
      <ion-icon name="calendar"></ion-icon>
      <span class="purchases-divider">{{group.header | date:'dd.MM.yyyy'}}</span>
-     <span item-right>Сума</span>
    </ion-item-divider>
-   <ion-item *ngFor="let purchase of group.collection" class="purchase-item">
-     {{purchase.title}} <ion-badge item-right>{{purchase.amount}}</ion-badge>
+   <ion-item *ngFor="let purchase of group.collection" class="purchase-item" no-lines>
+     <ion-badge color="secondary" item-left>{{purchase.amount}} грн.</ion-badge>{{purchase.title}}
+     <ion-badge item-right *ngFor="let tag of purchase.tags"> {{tag.name}} </ion-badge>
    </ion-item>
 
   </ion-item-group>

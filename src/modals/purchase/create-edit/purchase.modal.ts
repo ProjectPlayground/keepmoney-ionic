@@ -36,7 +36,8 @@ export class PurchaseCreateEditModal implements OnInit{
     });
     loader.present();
 
-    this.purchaseService.create(this.purchaseForm.title, this.purchaseForm.date, this.purchaseForm.amount, this.purchaseForm.tags).subscribe(
+    console.log(this.purchaseForm.tagList);
+    this.purchaseService.create(this.purchaseForm.title, this.purchaseForm.date, this.purchaseForm.amount, this.purchaseForm.tagList).subscribe(
       data => {
         loader.dismissAll();
         if (data.status == 200) {
