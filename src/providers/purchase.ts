@@ -24,6 +24,13 @@ export class PurchaseProvider {
       .catch((error:any) => Observable.throw(error.json() || 'Server error'));
   }
 
+  update(id:string, title:string, date:DateTime, amount:number, tags:string[]):any {
+    var json = JSON.stringify({ _id: id, title: title, date: date, amount: amount, tags: tags});
+    return this.http.put('http://6778586a.ngrok.io/purchases', json, {headers: this.headers()})
+      .map(res => res.json())
+      .catch((error:any) => Observable.throw(error.json() || 'Server error'));
+  }
+
   private headers():Headers {
     var headers = new Headers();
     var token = JSON.parse(window.localStorage.getItem('user'))['token'];

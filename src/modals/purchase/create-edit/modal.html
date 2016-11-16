@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Добавить покупку
+    <ion-title>{{ isEditMode() ? 'Режим редактирования' : 'Добавить покупку'}}
     </ion-title>
     <ion-buttons start>
       <button ion-button (click)="dismiss()">
@@ -10,8 +10,8 @@
     </ion-buttons>
 
     <ion-buttons end>
-      <button ion-button icon-only [disabled]="!purchaseForm.valid" (click)="add()">
-        <ion-icon name="add"></ion-icon>
+      <button ion-button icon-only [disabled]="!purchaseForm.valid" (click)="process()">
+        <ion-icon name="{{isEditMode() ? 'sync' : 'add'}}"></ion-icon>
       </button>
     </ion-buttons>
   </ion-toolbar>
