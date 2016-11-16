@@ -30,11 +30,11 @@ export class UserProvider {
       })
       .map(response => this.processUserAuth(response))
       .catch((error:any) => Observable.throw(error.json() || 'Server error'));
-
   }
 
   isLoggedIn():boolean {
-    return !!window.localStorage.getItem('user');
+    var userData = JSON.parse(window.localStorage.getItem('user'));
+    return userData && userData['token'];
   }
 
   logOut():void {
@@ -42,7 +42,8 @@ export class UserProvider {
   }
 
   private processUserAuth(response):any {
-    window.localStorage.setItem('user', JSON.stringify({phone: response.json().phone, token: response.json().token}));
+    var userData = JSON.stringify({phone: response.json().phone, token: response.json().token})
+    window.localStorage.setItem('user', userData);
     return response.json();
   }
 

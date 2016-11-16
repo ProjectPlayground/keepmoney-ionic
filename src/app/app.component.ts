@@ -21,16 +21,15 @@ export class MyApp {
       this.initializeTranslateServiceConfig();
       this.setUpTab();
       events.subscribe('user:login', () => this.setUpTab());
+      events.subscribe('user:logout', () => {
+        users.logOut();
+        this.setUpTab()
+      });
     });
   }
 
   initializeTranslateServiceConfig() {
-    /*var prefix = 'assets/i18n/';
-    var suffix = '.json';
-    console.log(this.translateService)
-    this.translateService.useStaticFilesLoader(prefix, suffix);
-
-    var userLang = navigator.language.split('-')[0];
+    /*var userLang = navigator.language.split('-')[0];
     userLang = /(ru|en)/gi.test(userLang) ? userLang : 'en';*/
 
     this.translateService.setDefaultLang('en');
