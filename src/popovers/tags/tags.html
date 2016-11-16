@@ -6,7 +6,8 @@
                    type="text" minlength="2" maxlength="30" required="required"
                    placeholder="Добавить новый тег"
                    [(ngModel)]="tagsForm.tagName"
-                   (keyup.enter)="tagsForm.invalid || add()"></ion-input>
+                   (keyup.enter)="tagsForm.invalid || add(tagName)"
+        ></ion-input>
       </ion-item>
     </ion-list>
   </form>

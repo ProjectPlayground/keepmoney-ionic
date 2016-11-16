@@ -33,12 +33,17 @@
       <ion-item-sliding #slidingItem *ngFor="let purchase of group.collection">
 
         <ion-item class="purchase-item" no-lines>
-          <ion-chip item-left class="amount-container">
-            <ion-icon name="card"></ion-icon>
-            <ion-label>{{purchase.amount}}</ion-label>
-          </ion-chip>
-          {{purchase.title}}
-          <ion-badge item-right *ngFor="let tag of purchase.tags"> {{tag.name}}</ion-badge>
+          <div>
+            <ion-chip item-left class="amount-container">
+              <ion-icon name="card"></ion-icon>
+              <ion-label>{{purchase.amount}}</ion-label>
+            </ion-chip>
+            {{purchase.title}}
+          </div>
+
+          <div>
+            <ion-badge item-right *ngFor="let tag of purchase.tags"> {{tag.name}}</ion-badge>
+          </div>
         </ion-item>
 
         <ion-item-options>

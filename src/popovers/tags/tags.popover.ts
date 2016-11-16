@@ -34,7 +34,9 @@ export class TagsPopover implements OnInit{
     }
   }
 
-  add() {
+  add(control) {
+    if (this.doesTagExist()) return;
+
     let loader = this.buildAndShowLoader();
 
     this.tagsService.create(this.tagsForm.tagName).subscribe(
@@ -102,5 +104,14 @@ export class TagsPopover implements OnInit{
     });
     loader.present();
     return loader;
+  }
+
+  private doesTagExist() {
+    let tagName = this.tagsForm.tagName;
+    let tags = _.filter(this.tags, function(tag) {
+      return tag['name'].toLowerCase() == tagName.toLowerCase();
+    });
+
+    return tags.length > 0;
   }
 }
