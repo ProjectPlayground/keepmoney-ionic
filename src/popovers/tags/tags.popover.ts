@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 
-import {Platform, NavParams, AlertController, LoadingController} from 'ionic-angular';
+import {Platform, NavParams, AlertController, LoadingController, ItemSliding} from 'ionic-angular';
 import {FormBuilder} from "@angular/forms";
 import {TagsProvider} from "../../providers/tags";
 import _ from 'underscore';
@@ -35,10 +35,7 @@ export class TagsPopover implements OnInit{
   }
 
   add() {
-    let loader = this.loadingCtrl.create({
-      content: "Please wait..."
-    });
-    loader.present();
+    let loader = this.buildAndShowLoader();
 
     this.tagsService.create(this.tagsForm.tagName).subscribe(
       data => {
@@ -53,9 +50,26 @@ export class TagsPopover implements OnInit{
     );
   }
 
-  editMode(tag) {
+  remove(tag) {
+    let loader = this.buildAndShowLoader();
+
+    this.tagsService.remove(tag['_id']).subscribe(
+      data => {
+        _.forEach(this.tags, () => this.tags.pop());
+        _.forEach(data['collection'], (tag) => this.tags.push(tag));
+        loader.dismissAll();
+      },
+      err => {
+        loader.dismissAll();
+        this.alertController.create({title: "Error", message: err.message}).present();
+      }
+    );
+  }
+
+  editMode(tag, slidingItem: ItemSliding) {
     this.editableTagId = tag._id;
     this.editableTagName = tag.name;
+    slidingItem.close();
   }
 
   isInEditMode(tagId) {
@@ -63,10 +77,8 @@ export class TagsPopover implements OnInit{
   }
 
   updateTag() {
-    let loader = this.loadingCtrl.create({
-      content: "Please wait..."
-    });
-    loader.present();
+    if (_.isEmpty(this.editableTagName)) return;
+    let loader = this.buildAndShowLoader();
 
     var tag = _.where(this.tags, {_id: this.editableTagId})[0];
 
@@ -82,5 +94,13 @@ export class TagsPopover implements OnInit{
         this.alertController.create({title: "Error", message: err.message}).present();
       }
     );
+  }
+
+  private buildAndShowLoader() {
+    let loader = this.loadingCtrl.create({
+      content: "Please wait..."
+    });
+    loader.present();
+    return loader;
   }
 }
