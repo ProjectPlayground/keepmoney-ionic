@@ -13,7 +13,7 @@
   </form>
   <ion-label *ngIf="tags.length == 0" class="no-tags">Тегов еще нету..</ion-label>
   <ion-list no-lines *ngIf="tags.length > 0">
-    <ion-item-sliding #slidingItem *ngFor="let tag of tags">
+    <ion-item-sliding #slidingItem *ngFor="let tag of tags | orderBy:'name'">
       <ion-item>
         <span *ngIf="!isInEditMode(tag._id)" class="tag-label">{{tag.name}}</span>
         <input *ngIf="isInEditMode(tag._id)"
