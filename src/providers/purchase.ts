@@ -31,6 +31,12 @@ export class PurchaseProvider {
       .catch((error:any) => Observable.throw(error.json() || 'Server error'));
   }
 
+  remove(id:string):any {
+    return this.http.post('http://6778586a.ngrok.io/purchases/'+id+'/delete', {}, {headers: this.headers()})
+      .map(res => res.json())
+      .catch((error:any) => Observable.throw(error.json() || 'Server error'));
+  }
+
   private headers():Headers {
     var headers = new Headers();
     var token = JSON.parse(window.localStorage.getItem('user'))['token'];

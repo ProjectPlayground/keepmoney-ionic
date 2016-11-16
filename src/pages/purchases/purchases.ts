@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
 import {PurchaseCreateEditModal} from '../../modals/purchase/create-edit/purchase.modal'
-import {NavController, ModalController, PopoverController, ItemSliding} from 'ionic-angular';
+import {
+  NavController, ModalController, PopoverController, ItemSliding, AlertController,
+  LoadingController
+} from 'ionic-angular';
 import _ from 'underscore';
 import {TagsPopover} from "../../popovers/tags/tags.popover";
 import {PurchasePageProvider} from "../../providers/purchase.page";
+import {PurchaseProvider} from "../../providers/purchase";
 
 @Component({
   selector: 'page-purchases',
@@ -18,7 +22,10 @@ export class PurchasesPage {
   constructor(public navCtrl: NavController,
               public modalCtrl: ModalController,
               public popoverCtrl: PopoverController,
-              public purchasesPageService: PurchasePageProvider) {
+              public purchasesPageService: PurchasePageProvider,
+              public purchaseService: PurchaseProvider,
+              public loadingCtrl: LoadingController,
+              public alertController:AlertController) {
 
     this.purchases = [];
     this.tags = [];
@@ -42,6 +49,29 @@ export class PurchasesPage {
     modal.present();
     modal.onWillDismiss((response) => this.updateData(response));
 
+    slidingItem.close();
+  }
+
+  remove(purchase, slidingItem: ItemSliding) {
+    let loader = this.loadingCtrl.create({
+      content: "Please wait..."
+    });
+    loader.present();
+
+    this.purchaseService.remove(purchase['_id']).subscribe(
+      data => {
+        loader.dismissAll();
+        this.purchases = data['collection'];
+        this.groupList();
+      },
+      err => {
+        loader.dismissAll();
+        this.alertController.create({
+          title: "Error",
+          message: err.message
+        }).present();
+      }
+    );
     slidingItem.close();
   }
 

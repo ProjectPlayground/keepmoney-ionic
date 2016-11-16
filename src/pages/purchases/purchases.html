@@ -51,6 +51,10 @@
             <ion-icon name="create"></ion-icon>
             {{'PAGE.PURCHASES.EDIT' | translate}}
           </button>
+          <button ion-button outline item-right icon-left (click)="remove(purchase, slidingItem)">
+            <ion-icon name="trash"></ion-icon>
+            {{'PAGE.PURCHASES.REMOVE' | translate}}
+          </button>
         </ion-item-options>
       </ion-item-sliding>
 
