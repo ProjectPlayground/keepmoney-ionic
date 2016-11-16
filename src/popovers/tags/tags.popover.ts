@@ -15,6 +15,7 @@ export class TagsPopover implements OnInit{
   public tags:any;
   public editableTagId:any;
   public editableTagName:string;
+
   constructor(
     public platform: Platform,
     public formBuilder: FormBuilder,

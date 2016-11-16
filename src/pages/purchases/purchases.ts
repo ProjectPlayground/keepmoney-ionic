@@ -13,6 +13,7 @@ export class PurchasesPage {
   public purchases:any = [];
   public groupedPurchases:any = [];
   public tags:any;
+  public isLoading:boolean = true;
 
   constructor(public navCtrl: NavController,
               public modalCtrl: ModalController,
@@ -26,6 +27,7 @@ export class PurchasesPage {
       this.purchases = response.purchases;
       this.tags = response.tags;
       this.groupList();
+      this.isLoading = false;
     });
   }
 
