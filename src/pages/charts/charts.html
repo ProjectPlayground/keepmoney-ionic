@@ -3,11 +3,21 @@
     <ion-title>
       {{'PAGE.CHARTS.TITLE' | translate}}
     </ion-title>
+    <ion-buttons end>
+      <button ion-button outline item-right icon-left (click)="refreshData()">
+        <ion-icon name="refresh"></ion-icon>
+        Обновить
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding class="purchases-content">
-  <div padding>
+
+  <ion-item *ngIf="isLoading" text-center>
+    <ion-spinner></ion-spinner>
+  </ion-item>
+  <div padding *ngIf="!isLoading">
     <ion-segment [(ngModel)]="tab">
       <ion-segment-button value="tag">
         Tags

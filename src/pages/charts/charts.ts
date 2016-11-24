@@ -1,7 +1,6 @@
-import {Component} from "@angular/core";
-import {NavController, AlertController, LoadingController} from "ionic-angular";
+import {Component, OnInit, AfterViewInit, OnChanges, DoCheck} from "@angular/core";
 import {PurchasePageProvider} from "../../providers/purchase.page";
-import _ from 'underscore';
+import _ from "underscore";
 
 @Component({
   selector: 'page-charts',
@@ -18,13 +17,8 @@ export class ChartsPage {
   public doughnutChartType:string = 'doughnut';
 
 
-  constructor(public navCtrl: NavController,
-              public purchasesPageService: PurchasePageProvider,
-              public loadingCtrl: LoadingController,
-              public alertController:AlertController) {
-
+  constructor(public purchasesPageService: PurchasePageProvider) {
     this.tags = [];
-
     this.purchasesPageService.get().subscribe((response) => {
       this.tags = response.tags;
       this.groupList();
@@ -32,15 +26,30 @@ export class ChartsPage {
     });
   }
 
+  refreshData() {
+    this.isLoading = true;
+    this.purchasesPageService.get().subscribe((response) => {
+      this.tags = response.tags;
+      this.groupList();
+      this.isLoading = false;
+    });
+  }
+
+  ionViewWillEnter() {
+
+  }
 
   private groupList() {
-
-    console.log(this.tags);
     this.doughnutChartLabels = _.pluck(this.tags, 'name');
-    var data = this.doughnutChartData;
+    var data = [];
     _.forEach(this.tags, function (tag) {
-      data.push(1);
-    })
+      var sum = 0;
+      _.forEach(tag['purchases'], function (purchase) {
+        sum += purchase['amount'];
+      });
+      data.push(sum);
+    });
+    this.doughnutChartData = data;
   }
 
 // events
