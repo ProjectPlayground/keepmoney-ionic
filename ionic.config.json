@@ -5,6 +5,6 @@
   "typescript": true,
   "proxies": [{
     "path": "/api",
-    "proxyUrl": "http://6778586a.ngrok.io"
+    "proxyUrl": "https://api-keepmoney.herokuapp.com"
   }]
 }

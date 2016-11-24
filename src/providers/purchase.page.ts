@@ -11,7 +11,7 @@ export class PurchasePageProvider {
   }
 
   get():any {
-    return this.http.get('http://6778586a.ngrok.io/mobile/page/purchases',
+    return this.http.get('https://api-keepmoney.herokuapp.com/mobile/page/purchases',
       {
         headers: this.headers()
       })

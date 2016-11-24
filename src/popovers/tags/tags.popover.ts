@@ -59,6 +59,7 @@ export class TagsPopover implements OnInit{
       data => {
         _.forEach(this.tags, () => this.tags.pop());
         _.forEach(data['collection'], (tag) => this.tags.push(tag));
+        console.log(data);
         loader.dismissAll();
       },
       err => {

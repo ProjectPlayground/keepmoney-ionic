@@ -13,7 +13,7 @@ export class TagsProvider {
   create(name:string):any {
     var json = JSON.stringify({ name: name});
 
-    return this.http.post('http://6778586a.ngrok.io/tags',
+    return this.http.post('https://api-keepmoney.herokuapp.com/tags',
       json, {
         headers: this.headers()
       })
@@ -24,7 +24,7 @@ export class TagsProvider {
   update(id:string, name:string):any {
     var json = JSON.stringify({_id: id, name: name});
 
-    return this.http.put('http://6778586a.ngrok.io/tags',
+    return this.http.put('https://api-keepmoney.herokuapp.com/tags',
       json, {
         headers: this.headers()
       })
@@ -33,7 +33,7 @@ export class TagsProvider {
   }
 
   remove(id:string):any {
-    return this.http.post('http://6778586a.ngrok.io/tags/'+id+'/delete', {
+    return this.http.post('https://api-keepmoney.herokuapp.com/tags/'+id+'/delete', {
         headers: this.headers()
       })
       .map(res => res.json())

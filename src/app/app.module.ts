@@ -19,6 +19,7 @@ import {TagsPopover} from "../popovers/tags/tags.popover";
 import {TagsProvider} from "../providers/tags";
 import {PurchasePageProvider} from "../providers/purchase.page";
 import {OrderByPipe} from "../pipes/array.order.by.pipe";
+import {PurchasesFilter} from "../components/filter/purchases/filter.purchases";
 
 @NgModule({
   declarations: [
@@ -36,7 +37,9 @@ import {OrderByPipe} from "../pipes/array.order.by.pipe";
 
     TagsPopover,
     ArrayFilterPipe,
-    OrderByPipe
+    OrderByPipe,
+
+    PurchasesFilter
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -62,6 +65,8 @@ import {OrderByPipe} from "../pipes/array.order.by.pipe";
     PurchaseCreateEditModal,
 
     TagsPopover,
+
+    PurchasesFilter
   ],
   providers: [TranslateService, UserProvider, PurchaseProvider, TagsProvider, PurchasePageProvider]
 })

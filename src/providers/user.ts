@@ -13,7 +13,7 @@ export class UserProvider {
   createAccount(phone:String, pin: String):any {
     var json = JSON.stringify({ phone: phone, pin: pin});
 
-    return this.http.post('http://6778586a.ngrok.io/users',
+    return this.http.post('https://api-keepmoney.herokuapp.com/users',
       json, {
         headers: this.headers()
       })
@@ -24,7 +24,7 @@ export class UserProvider {
   auth(phone:String, pin:String):any {
     var json = JSON.stringify({ phone: phone, pin: pin});
 
-    return this.http.post('http://6778586a.ngrok.io/users/auth',
+    return this.http.post('https://api-keepmoney.herokuapp.com/users/auth',
       json, {
         headers: this.headers()
       })
