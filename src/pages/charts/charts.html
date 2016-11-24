@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{'PAGE.CHARTS.TITLE' | translate}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="purchases-content">
+  <div padding>
+    <ion-segment [(ngModel)]="tab">
+      <ion-segment-button value="tag">
+        Tags
+      </ion-segment-button>
+      <ion-segment-button value="month">
+        Monthly
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="tab">
+    <ion-list *ngSwitchCase="'tag'">
+      <div style="display: block">
+        <canvas baseChart
+                [data]="doughnutChartData"
+                [labels]="doughnutChartLabels"
+                [chartType]="doughnutChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+      </div>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'month'">
+      <ion-item>
+        <h2>Luna</h2>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

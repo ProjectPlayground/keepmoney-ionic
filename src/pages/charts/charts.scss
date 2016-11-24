@@ -1,0 +1,38 @@
+page-purchases {
+  .purchases-content {
+    background-color: #e5dca3;
+  }
+
+  .item-divider {
+    margin-top: 30px;
+    color: #737373;
+    background-color: white;
+  }
+
+  .item-divider.first {
+    margin-top: 0;
+  }
+
+  .item-divider ion-label {
+    padding: 5px;
+    padding-left: 10px;
+    color: #737373;
+    border-bottom: 1px solid #737373;
+    max-width: 120px;
+  }
+
+  .purchases-divider {
+    margin-left: 5px;
+    font-weight: bold;
+  }
+
+  ion-chip.amount-container ion-icon {
+    padding-left: 7px;
+  }
+
+  ion-chip.amount-container ion-label {
+    font-weight: bold;
+    font-size: 14pt;
+    color: #737373;
+  }
+}

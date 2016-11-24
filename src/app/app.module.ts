@@ -20,6 +20,10 @@ import {TagsProvider} from "../providers/tags";
 import {PurchasePageProvider} from "../providers/purchase.page";
 import {OrderByPipe} from "../pipes/array.order.by.pipe";
 import {PurchasesFilter} from "../components/filter/purchases/filter.purchases";
+import {ChartsPage} from "../pages/charts/charts";
+import '../../node_modules/chart.js/dist/Chart.min.js'; // and
+import { ChartsModule } from 'ng2-charts/components/charts/charts';
+
 
 @NgModule({
   declarations: [
@@ -32,6 +36,7 @@ import {PurchasesFilter} from "../components/filter/purchases/filter.purchases";
 
     BoardTabsPage,
     PurchasesPage,
+    ChartsPage,
 
     PurchaseCreateEditModal,
 
@@ -48,7 +53,8 @@ import {PurchasesFilter} from "../components/filter/purchases/filter.purchases";
       useFactory: (createTranslateLoader),
       deps: [Http]
     }),
-    MomentModule
+    MomentModule,
+    ChartsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -61,6 +67,7 @@ import {PurchasesFilter} from "../components/filter/purchases/filter.purchases";
 
     BoardTabsPage,
     PurchasesPage,
+    ChartsPage,
 
     PurchaseCreateEditModal,
 

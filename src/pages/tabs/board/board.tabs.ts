@@ -2,12 +2,14 @@ import { Component } from '@angular/core';
 import {PurchasesPage} from '../../purchases/purchases'
 import {TranslateService} from "ng2-translate";
 import {Events, AlertController} from "ionic-angular";
+import {ChartsPage} from "../../charts/charts";
 
 @Component({
   templateUrl: 'board.tabs.html'
 })
 export class BoardTabsPage {
   operationsPage: any = PurchasesPage;
+  chartsPage: any = ChartsPage;
 
   constructor(public translate: TranslateService, public events: Events, public alertCtrl: AlertController) {
   }
