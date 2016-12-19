@@ -38,7 +38,6 @@ export class PurchasesPage {
       this.groupList();
       this.isLoading = false;
     });
-    this.initActionSheet();
   }
 
   addNew() {
@@ -84,8 +83,12 @@ export class PurchasesPage {
   }
 
   openMenu() {
+    this.initActionSheet();
     this.actionSheet.present();
-    console.log(this.actionSheet)
+  }
+
+  getTotalMoneySpent() {
+    return this.purchaseService.getTotalMoneySpent(this.purchases);
   }
 
   private groupList() {

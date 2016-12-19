@@ -4,7 +4,7 @@
       {{'Витрати'}}
     </ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="actionSheet.present()">
+      <button ion-button icon-only (click)="openMenu()">
         <ion-icon name="more" ></ion-icon>
       </button>
     </ion-buttons>
@@ -31,7 +31,7 @@
         <ion-item class="purchase-item" no-lines>
           <div>
             <ion-chip item-left class="amount-container">
-              <ion-icon name="card"></ion-icon>
+              <ion-icon name="cash"></ion-icon>
               <ion-label>{{purchase.amount}}</ion-label>
             </ion-chip>
             {{purchase.title}}
@@ -45,15 +45,20 @@
         <ion-item-options>
           <button ion-button outline item-right icon-left (click)="edit(purchase, slidingItem)">
             <ion-icon name="create"></ion-icon>
-            {{'PAGE.PURCHASES.EDIT' | translate}}
+            {{'Редагувати'}}
           </button>
           <button ion-button outline item-right icon-left (click)="remove(purchase, slidingItem)">
             <ion-icon name="trash"></ion-icon>
-            {{'PAGE.PURCHASES.REMOVE' | translate}}
+            {{'Видалити'}}
           </button>
         </ion-item-options>
       </ion-item-sliding>
 
     </ion-item-group>
   </ion-list>
+  <ion-footer>
+    <ion-toolbar>
+      <ion-title>Всього витрачено <b>{{getTotalMoneySpent()}}</b> у.о.</ion-title>
+    </ion-toolbar>
+  </ion-footer>
 </ion-content>

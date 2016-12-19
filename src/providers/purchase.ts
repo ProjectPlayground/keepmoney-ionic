@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs";
 import {DateTime} from "ionic-angular";
+import _ from 'underscore';
 
 @Injectable()
 export class PurchaseProvider {
@@ -35,6 +36,16 @@ export class PurchaseProvider {
     return this.http.post('https://api-keepmoney.herokuapp.com/purchases/'+id+'/delete', {}, {headers: this.headers()})
       .map(res => res.json())
       .catch((error:any) => Observable.throw(error.json() || 'Server error'));
+  }
+
+  getTotalMoneySpent(purchases: any): any {
+    let totalAmount = 0;
+
+    _.each(purchases, function (purchase) {
+      totalAmount += purchase['amount'];
+    });
+
+    return totalAmount;
   }
 
   private headers():Headers {
