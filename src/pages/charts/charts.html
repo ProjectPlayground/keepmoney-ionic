@@ -1,12 +1,12 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      {{'PAGE.CHARTS.TITLE' | translate}}
+      {{'Статистика' | translate}}
     </ion-title>
     <ion-buttons end>
       <button ion-button outline item-right icon-left (click)="refreshData()">
         <ion-icon name="refresh"></ion-icon>
-        Обновить
+        Оновити
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -20,11 +20,11 @@
   <div padding *ngIf="!isLoading">
     <ion-segment [(ngModel)]="tab">
       <ion-segment-button value="tag">
-        Tags
+        Теги
       </ion-segment-button>
-      <ion-segment-button value="month">
+     <!-- <ion-segment-button value="month">
         Monthly
-      </ion-segment-button>
+      </ion-segment-button>-->
     </ion-segment>
   </div>
 

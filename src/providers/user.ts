@@ -3,6 +3,7 @@ import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs";
+import {AppConfig} from "../app/app.config";
 
 @Injectable()
 export class UserProvider {
@@ -13,7 +14,7 @@ export class UserProvider {
   createAccount(phone:String, pin: String):any {
     var json = JSON.stringify({ phone: phone, pin: pin});
 
-    return this.http.post('https://api-keepmoney.herokuapp.com/users',
+    return this.http.post(`${ AppConfig.apiEndpoint }` + 'users',
       json, {
         headers: this.headers()
       })
@@ -24,7 +25,7 @@ export class UserProvider {
   auth(phone:String, pin:String):any {
     var json = JSON.stringify({ phone: phone, pin: pin});
 
-    return this.http.post('https://api-keepmoney.herokuapp.com/users/auth',
+    return this.http.post(`${ AppConfig.apiEndpoint }` + 'users/auth',
       json, {
         headers: this.headers()
       })

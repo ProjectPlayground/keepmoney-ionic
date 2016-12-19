@@ -3,6 +3,7 @@ import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs";
+import {AppConfig} from '../app/app.config'
 
 @Injectable()
 export class TagsProvider {
@@ -13,7 +14,7 @@ export class TagsProvider {
   create(name:string):any {
     var json = JSON.stringify({ name: name});
 
-    return this.http.post('https://api-keepmoney.herokuapp.com/tags',
+    return this.http.post(`${ AppConfig.apiEndpoint }` + 'tags',
       json, {
         headers: this.headers()
       })
@@ -24,7 +25,7 @@ export class TagsProvider {
   update(id:string, name:string):any {
     var json = JSON.stringify({_id: id, name: name});
 
-    return this.http.put('https://api-keepmoney.herokuapp.com/tags',
+    return this.http.put(`${ AppConfig.apiEndpoint }` + 'tags',
       json, {
         headers: this.headers()
       })
@@ -33,7 +34,7 @@ export class TagsProvider {
   }
 
   remove(id:string):any {
-    return this.http.post('https://api-keepmoney.herokuapp.com/tags/'+id+'/delete', {
+    return this.http.post(`${ AppConfig.apiEndpoint }` + 'tags/'+id+'/delete', {
         headers: this.headers()
       })
       .map(res => res.json())

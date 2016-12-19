@@ -3,6 +3,7 @@ import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs";
+import {AppConfig} from '../app/app.config'
 
 @Injectable()
 export class PurchasePageProvider {
@@ -11,7 +12,7 @@ export class PurchasePageProvider {
   }
 
   get():any {
-    return this.http.get('https://api-keepmoney.herokuapp.com/mobile/page/purchases',
+    return this.http.get(`${ AppConfig.apiEndpoint }` + 'mobile/page/purchases',
       {
         headers: this.headers()
       })
