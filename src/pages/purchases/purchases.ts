@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {PurchaseCreateEditModal} from '../../modals/purchase/create-edit/purchase.modal'
 import {
   NavController, ModalController, PopoverController, ItemSliding, AlertController,
-  LoadingController
+  LoadingController, ActionSheetController
 } from 'ionic-angular';
 import _ from 'underscore';
 import {TagsPopover} from "../../popovers/tags/tags.popover";
@@ -17,6 +17,7 @@ export class PurchasesPage {
   public purchases:any = [];
   public groupedPurchases:any = [];
   public tags:any;
+  public actionSheet: any;
   public isLoading:boolean = true;
 
   constructor(public navCtrl: NavController,
@@ -25,7 +26,8 @@ export class PurchasesPage {
               public purchasesPageService: PurchasePageProvider,
               public purchaseService: PurchaseProvider,
               public loadingCtrl: LoadingController,
-              public alertController:AlertController) {
+              public alertController:AlertController,
+              public actionSheetCtrl: ActionSheetController) {
 
     this.purchases = [];
     this.tags = [];
@@ -36,6 +38,7 @@ export class PurchasesPage {
       this.groupList();
       this.isLoading = false;
     });
+    this.initActionSheet();
   }
 
   addNew() {
@@ -80,6 +83,11 @@ export class PurchasesPage {
     popover.present();
   }
 
+  openMenu() {
+    this.actionSheet.present();
+    console.log(this.actionSheet)
+  }
+
   private groupList() {
     var groupedByDate = _.groupBy(this.purchases, 'date');
     var keys = _.sortBy(Object.keys(groupedByDate)).reverse();
@@ -100,5 +108,14 @@ export class PurchasesPage {
       this.purchases = response['collection'];
       this.groupList();
     }
+  }
+
+  private initActionSheet() {
+    this.actionSheet = this.actionSheetCtrl.create({
+      buttons: [
+        { text: 'New purchase', role: 'add', handler: () => {this.addNew();} },
+        { text: 'Tags', role: 'cancel', handler: () => { this.showTagsPopover();} }
+      ]
+    });
   }
 }

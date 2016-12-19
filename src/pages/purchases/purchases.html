@@ -1,16 +1,11 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      {{'PAGE.PURCHASES.PAGE_TITLE' | translate}}
+      {{'Витрати'}}
     </ion-title>
     <ion-buttons end>
-      <button ion-button outline item-right icon-left (click)="showTagsPopover()">
-        <ion-icon name="pricetag"></ion-icon>
-        {{'PAGE.PURCHASES.TAGS' | translate}} ({{tags.length || 0}})
-      </button>
-      <button ion-button outline item-right icon-left (click)="addNew()">
-        <ion-icon name="add"></ion-icon>
-        {{'PAGE.PURCHASES.ADD_NEW' | translate}}
+      <button ion-button icon-only (click)="actionSheet.present()">
+        <ion-icon name="more" ></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>

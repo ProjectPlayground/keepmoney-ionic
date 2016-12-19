@@ -3,7 +3,7 @@
     <ion-item>
       <ion-input #tagName formControlName="tagName"
                  type="text" minlength="2" maxlength="30" required="required"
-                 placeholder="Добавить новый тег"
+                 placeholder="Додати новий тег"
                  [(ngModel)]="tagsForm.tagName"
                  (keyup.enter)="tagsForm.invalid || add(tagName)"
       ></ion-input>
