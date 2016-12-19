@@ -32,8 +32,8 @@ export class MyApp {
     /*var userLang = navigator.language.split('-')[0];
     userLang = /(ru|en)/gi.test(userLang) ? userLang : 'en';*/
 
-    this.translateService.setDefaultLang('en');
-    this.translateService.use('ru');
+    /*this.translateService.setDefaultLang('en');
+    this.translateService.use('ru');*/
   }
 
   setUpTab() {

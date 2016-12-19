@@ -1,22 +1,23 @@
 <ion-content padding>
-  <h1 class="login-welcome">{{'PAGE.LOGIN.WELCOME_TITLE' | translate}}</h1>
+  <!--<h1 class="login-welcome">{{'PAGE.LOGIN.WELCOME_TITLE' | translate}}</h1>-->
+  <h1 class="login-welcome">{{'Welcome'}}</h1>
   <form [formGroup]="loginForm">
 
     <ion-list>
       <ion-item>
-        <ion-label fixed>{{'PHONE' | translate}}</ion-label>
+        <ion-label fixed>{{'Phone'}}</ion-label>
         <ion-input #phone formControlName="phone" type="text" minlength="7" maxlength="12" required="required" [(ngModel)]="user.phone"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label fixed>{{'PINCODE' | translate}}</ion-label>
+        <ion-label fixed>{{'Pincode'}}</ion-label>
         <ion-input #pin formControlName="pin" type="text" minlength="4" maxlength="4" required="required" [(ngModel)]="user.pin"></ion-input>
       </ion-item>
     </ion-list>
   </form>
 
   <div padding>
-    <button ion-button full  [disabled]="!loginForm.valid" (click)="createAccount()">{{'PAGE.LOGIN.LOGIN_BTN'| translate}}</button>
+    <button ion-button full  [disabled]="!loginForm.valid" (click)="createAccount()">{{'Login'}}</button>
   </div>
 
 </ion-content>

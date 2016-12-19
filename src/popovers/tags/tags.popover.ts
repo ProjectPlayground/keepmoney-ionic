@@ -11,7 +11,6 @@ import _ from 'underscore';
   providers: []
 })
 export class TagsPopover implements OnInit{
-  public tagsForm:any;
   public tags:any;
   public editableTagId:any;
   public editableTagName:string;
@@ -24,33 +23,14 @@ export class TagsPopover implements OnInit{
     private navParams: NavParams,
     private tagsService: TagsProvider
   ) {
-    this.tagsForm = formBuilder.group({ tagName: ['']});
   }
 
   ngOnInit() {
     if (this.navParams.data) {
       this.tags = this.navParams.data.tags;
-      console.log(this.tags);
     }
   }
 
-  add(control) {
-    if (this.doesTagExist()) return;
-
-    let loader = this.buildAndShowLoader();
-
-    this.tagsService.create(this.tagsForm.tagName).subscribe(
-      data => {
-        loader.dismissAll();
-        this.tags.push(data['tag']);
-        this.tagsForm.reset();
-      },
-      err => {
-        loader.dismissAll();
-        this.alertController.create({title: "Error", message: err.message}).present();
-      }
-    );
-  }
 
   remove(tag) {
     let loader = this.buildAndShowLoader();
@@ -105,14 +85,5 @@ export class TagsPopover implements OnInit{
     });
     loader.present();
     return loader;
-  }
-
-  private doesTagExist() {
-    let tagName = this.tagsForm.tagName;
-    let tags = _.filter(this.tags, function(tag) {
-      return tag['name'].toLowerCase() == tagName.toLowerCase();
-    });
-
-    return tags.length > 0;
   }
 }

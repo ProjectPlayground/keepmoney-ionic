@@ -23,6 +23,7 @@ import {PurchasesFilter} from "../components/filter/purchases/filter.purchases";
 import {ChartsPage} from "../pages/charts/charts";
 import '../../node_modules/chart.js/dist/Chart.min.js'; // and
 import { ChartsModule } from 'ng2-charts/components/charts/charts';
+import {TagCreateInput} from "../components/tag/create-input/tag.create.input";
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { ChartsModule } from 'ng2-charts/components/charts/charts';
     ArrayFilterPipe,
     OrderByPipe,
 
-    PurchasesFilter
+    PurchasesFilter,
+    TagCreateInput
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -73,7 +75,8 @@ import { ChartsModule } from 'ng2-charts/components/charts/charts';
 
     TagsPopover,
 
-    PurchasesFilter
+    PurchasesFilter,
+    TagCreateInput
   ],
   providers: [TranslateService, UserProvider, PurchaseProvider, TagsProvider, PurchasePageProvider]
 })
