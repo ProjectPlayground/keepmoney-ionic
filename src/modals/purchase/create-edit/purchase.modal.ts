@@ -25,6 +25,7 @@ export class PurchaseCreateEditModal implements OnInit{
   ) {
     this.purchaseForm = formBuilder.group({ title: [''], date: [''], amount: [''], tagList:[]});
     this.tags = [];
+    this.purchaseForm.date = new Date().toJSON().slice(0,10);
   }
 
   ngOnInit() {
