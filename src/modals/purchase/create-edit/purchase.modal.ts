@@ -49,9 +49,7 @@ export class PurchaseCreateEditModal implements OnInit{
     this.purchaseService.create(this.purchaseForm.title, this.purchaseForm.date, this.purchaseForm.amount, this.purchaseForm.tagList).subscribe(
       data => {
         loader.dismissAll();
-        if (data.status == 200) {
           this.viewCtrl.dismiss(data);
-        }
       },
       err => {
         loader.dismissAll();

@@ -46,13 +46,13 @@ export class PurchasesPage {
   addNew() {
     let modal = this.modalCtrl.create(PurchaseCreateEditModal, {tags: this.tags});
     modal.present();
-    modal.onWillDismiss((response) => this.updateData(response));
+    modal.onWillDismiss((response) => this.groupedList.updateList(response));
   }
 
   edit(purchase, slidingItem: ItemSliding) {
     let modal = this.modalCtrl.create(PurchaseCreateEditModal, {purchase: purchase,tags: this.tags});
     modal.present();
-    modal.onWillDismiss((response) => this.updateData(response));
+    modal.onWillDismiss((response) => this.groupedList.updateList(response));
 
     slidingItem.close();
   }
@@ -66,7 +66,7 @@ export class PurchasesPage {
     this.purchaseService.remove(purchase['_id']).subscribe(
       data => {
         loader.dismissAll();
-        this.updateData(data);
+        this.groupedList.updateList(data);
       },
       err => {
         loader.dismissAll();
@@ -91,12 +91,6 @@ export class PurchasesPage {
 
   getTotalMoneySpent() {
     return this.purchaseService.getTotalMoneySpent(this.groupedList.asList());
-  }
-
-  private updateData(response) {
-    if (response && response['collection']) {
-      this.groupedList.updateList(PurchaseUtils.parseList(response['collection']));
-    }
   }
 
   private initActionSheet() {

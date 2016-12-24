@@ -6,6 +6,8 @@ import {Observable} from "rxjs";
 import {DateTime} from "ionic-angular";
 import _ from 'underscore';
 import {AppConfig} from '../app/app.config'
+import {Purchase} from "../models/purchase";
+import {PurchaseUtils} from "../utils/purchase.utils";
 
 @Injectable()
 export class PurchaseProvider {
@@ -14,29 +16,29 @@ export class PurchaseProvider {
 
   }
 
-  getAll():any {
+  getAll(): Observable<Purchase[]> {
     return this.http.get(`${ AppConfig.apiEndpoint }` + 'purchases', {headers: this.headers()})
-      .map(res => res.json())
+      .map(res => PurchaseUtils.parseList(res.json()))
       .catch((error:any) => Observable.throw(error.json() || 'Server error'));
   }
 
-  create(title:string, date:DateTime, amount:number, tags:string[]):any {
+  create(title:string, date:DateTime, amount:number, tags:string[]): Observable<Purchase[]> {
     var json = JSON.stringify({ title: title, date: date, amount: amount, tags: tags});
     return this.http.post(`${ AppConfig.apiEndpoint }` + 'purchases', json, {headers: this.headers()})
-      .map(res => res.json())
+      .map(res => PurchaseUtils.parseList(res.json()['collection']))
       .catch((error:any) => Observable.throw(error.json() || 'Server error'));
   }
 
-  update(id:string, title:string, date:DateTime, amount:number, tags:string[]):any {
+  update(id:string, title:string, date:DateTime, amount:number, tags:string[]): Observable<Purchase[]> {
     var json = JSON.stringify({ _id: id, title: title, date: date, amount: amount, tags: tags});
     return this.http.put(`${ AppConfig.apiEndpoint }` + 'purchases', json, {headers: this.headers()})
-      .map(res => res.json())
+      .map(res => PurchaseUtils.parseList(res.json()['collection']))
       .catch((error:any) => Observable.throw(error.json() || 'Server error'));
   }
 
-  remove(id:string):any {
+  remove(id:string): Observable<Purchase[]> {
     return this.http.post(`${ AppConfig.apiEndpoint }` + 'purchases/'+id+'/delete', {}, {headers: this.headers()})
-      .map(res => res.json())
+      .map(res => PurchaseUtils.parseList(res.json()['collection']))
       .catch((error:any) => Observable.throw(error.json() || 'Server error'));
   }
 
