@@ -1,9 +1,8 @@
-import { Injectable } from '@angular/core';
-import {Http, Headers} from '@angular/http';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/map';
+import {Injectable} from "@angular/core";
+import {Http, Headers} from "@angular/http";
+import "rxjs/add/operator/map";
 import {Observable} from "rxjs";
-import {AppConfig} from '../app/app.config'
+import {AppConfig} from "../app/app.config";
 
 @Injectable()
 export class TagsProvider {

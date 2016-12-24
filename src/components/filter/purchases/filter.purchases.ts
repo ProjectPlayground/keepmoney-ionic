@@ -1,10 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-
-import {Platform, NavParams, AlertController, LoadingController, ItemSliding} from 'ionic-angular';
+import {Component} from "@angular/core";
 import {FormBuilder} from "@angular/forms";
-import {TagsProvider} from "../../providers/tags";
-import _ from 'underscore';
-import moment from 'moment'
 
 @Component({
   selector:'filter-purchases',
@@ -20,7 +15,6 @@ export class PurchasesFilter{
     this.filterForm = formBuilder.group({ from: [''], to: ['']});
     this.filterForm.from = new Date();
     this.filterForm.to = new Date();
-
   }
 
 }

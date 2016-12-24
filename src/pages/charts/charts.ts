@@ -1,4 +1,4 @@
-import {Component, OnInit, AfterViewInit, OnChanges, DoCheck} from "@angular/core";
+import {Component} from "@angular/core";
 import {PurchasePageProvider} from "../../providers/purchase.page";
 import _ from "underscore";
 

@@ -1,10 +1,14 @@
-import { Component } from '@angular/core';
-import {PurchaseCreateEditModal} from '../../modals/purchase/create-edit/purchase.modal'
+import {Component} from "@angular/core";
+import {PurchaseCreateEditModal} from "../../modals/purchase/create-edit/purchase.modal";
 import {
-  NavController, ModalController, PopoverController, ItemSliding, AlertController,
-  LoadingController, ActionSheetController
-} from 'ionic-angular';
-import _ from 'underscore';
+  ModalController,
+  PopoverController,
+  ItemSliding,
+  AlertController,
+  LoadingController,
+  ActionSheetController
+} from "ionic-angular";
+import _ from "underscore";
 import {TagsPopover} from "../../popovers/tags/tags.popover";
 import {PurchasePageProvider} from "../../providers/purchase.page";
 import {PurchaseProvider} from "../../providers/purchase";
@@ -20,8 +24,7 @@ export class PurchasesPage {
   public actionSheet: any;
   public isLoading:boolean = true;
 
-  constructor(public navCtrl: NavController,
-              public modalCtrl: ModalController,
+  constructor(public modalCtrl: ModalController,
               public popoverCtrl: PopoverController,
               public purchasesPageService: PurchasePageProvider,
               public purchaseService: PurchaseProvider,
