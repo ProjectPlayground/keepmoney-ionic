@@ -26,10 +26,12 @@ export class Purchase {
           _.forEach(json[attribute], (tagJson) => tagList.push(Tag.fromJson(tagJson)));
           purchase.updateTags(tagList);
         } else {
-          this[attribute] = json[attribute];
+          purchase[attribute] = json[attribute];
         }
       }
     });
+
+    console.log(purchase);
 
     return purchase;
   }

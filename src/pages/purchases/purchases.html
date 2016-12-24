@@ -19,11 +19,11 @@
       <ion-spinner></ion-spinner>
     </ion-item>
 
-    <ion-item-group *ngFor="let group of groupedPurchases; let ind = index" no-lines>
+    <ion-item-group *ngFor="let group of groupedList.asGroup(); let ind = index" no-lines>
 
       <ion-item-divider light class="item-divider" [class.first]="ind == 0">
         <ion-icon name="calendar"></ion-icon>
-        <span class="purchases-divider">{{group.header | date:'dd.MM.yyyy'}}</span>
+        <span class="purchases-divider">{{group.date | date:'dd.MM.yyyy'}}</span>
       </ion-item-divider>
 
       <ion-item-sliding #slidingItem *ngFor="let purchase of group.collection">

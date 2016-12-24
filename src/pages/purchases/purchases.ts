@@ -8,22 +8,21 @@ import {
   LoadingController,
   ActionSheetController
 } from "ionic-angular";
-import _ from "underscore";
 import {TagsPopover} from "../../popovers/tags/tags.popover";
 import {PurchasePageProvider} from "../../providers/purchase.page";
 import {PurchaseProvider} from "../../providers/purchase";
 import {PurchaseUtils} from "../../utils/purchase.utils";
+import {PurchaseGroupedList} from "../../models/purchaseGroupedList";
 
 @Component({
   selector: 'page-purchases',
   templateUrl: 'purchases.html',
 })
 export class PurchasesPage {
-  public purchases:any = [];
-  public groupedPurchases:any = [];
   public tags:any;
   public actionSheet: any;
   public isLoading:boolean = true;
+  private groupedList: PurchaseGroupedList;
 
   constructor(public modalCtrl: ModalController,
               public popoverCtrl: PopoverController,
@@ -33,14 +32,12 @@ export class PurchasesPage {
               public alertController:AlertController,
               public actionSheetCtrl: ActionSheetController) {
 
-    this.purchases = [];
     this.tags = [];
+    this.groupedList = new PurchaseGroupedList();
 
     this.purchasesPageService.get().subscribe((response) => {
-      this.purchases = response.purchases;
-      PurchaseUtils.parseList(response.purchases);
+      this.groupedList.updateList(PurchaseUtils.parseList(response.purchases));
       this.tags = response.tags;
-      this.groupList();
       this.isLoading = false;
     });
   }
@@ -68,8 +65,7 @@ export class PurchasesPage {
     this.purchaseService.remove(purchase['_id']).subscribe(
       data => {
         loader.dismissAll();
-        this.purchases = data['collection'];
-        this.groupList();
+        this.updateData(data);
       },
       err => {
         loader.dismissAll();
@@ -93,28 +89,12 @@ export class PurchasesPage {
   }
 
   getTotalMoneySpent() {
-    return this.purchaseService.getTotalMoneySpent(this.purchases);
-  }
-
-  private groupList() {
-    var groupedByDate = _.groupBy(this.purchases, 'date');
-    var keys = _.sortBy(Object.keys(groupedByDate)).reverse();
-    var groupedList = [];
-
-    _.forEach(keys, (key) => {
-      groupedList.push({
-        header: key,
-        collection: groupedByDate[key]
-      })
-    });
-
-    this.groupedPurchases = groupedList;
+    return this.purchaseService.getTotalMoneySpent(this.groupedList.asList());
   }
 
   private updateData(response) {
     if (response && response['collection']) {
-      this.purchases = response['collection'];
-      this.groupList();
+      this.groupedList.updateList(PurchaseUtils.parseList(response['collection']));
     }
   }
 
