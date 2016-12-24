@@ -2,9 +2,5 @@
   "name": "keepmoney-ionic",
   "app_id": "",
   "v2": true,
-  "typescript": true,
-  "proxies": [{
-    "path": "/api",
-    "proxyUrl": "https://api-keepmoney.herokuapp.com"
-  }]
+  "typescript": true
 }
