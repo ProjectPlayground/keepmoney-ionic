@@ -1,5 +1,4 @@
-import _ from 'underscore';
-import {JsonModel} from "./json.model";
+import _ from "underscore";
 
 export class Tag {
   public name: string;
@@ -8,7 +7,6 @@ export class Tag {
   public constructor() {}
 
   public static fromJson(json: any): Tag {
-    console.log(json);
     let tag: Tag = new Tag();
     let attributes = ['name', '_id'];
 
