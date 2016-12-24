@@ -1,3 +1,6 @@
 export interface IPurchase {
-  title: string,
+  title: string;
+  date: string;
+  amount: number;
+  id: string;
 }

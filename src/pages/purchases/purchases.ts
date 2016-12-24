@@ -12,6 +12,7 @@ import _ from "underscore";
 import {TagsPopover} from "../../popovers/tags/tags.popover";
 import {PurchasePageProvider} from "../../providers/purchase.page";
 import {PurchaseProvider} from "../../providers/purchase";
+import {PurchaseUtils} from "../../utils/purchase.utils";
 
 @Component({
   selector: 'page-purchases',
@@ -37,6 +38,7 @@ export class PurchasesPage {
 
     this.purchasesPageService.get().subscribe((response) => {
       this.purchases = response.purchases;
+      PurchaseUtils.parseList(response.purchases);
       this.tags = response.tags;
       this.groupList();
       this.isLoading = false;
