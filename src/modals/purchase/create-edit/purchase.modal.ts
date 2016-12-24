@@ -4,6 +4,7 @@ import {Platform, NavParams, ViewController, AlertController, LoadingController}
 import {FormBuilder} from "@angular/forms";
 import {PurchaseProvider} from "../../../providers/purchase";
 import _ from 'underscore';
+import {DateUtils} from "../../../utils/date.utils";
 
 @Component({
   templateUrl: 'modal.html',
@@ -25,7 +26,7 @@ export class PurchaseCreateEditModal implements OnInit{
   ) {
     this.purchaseForm = formBuilder.group({ title: [''], date: [''], amount: [''], tagList:[]});
     this.tags = [];
-    this.purchaseForm.date = new Date().toJSON().slice(0,10);
+    this.purchaseForm.date = DateUtils.today();
   }
 
   ngOnInit() {
