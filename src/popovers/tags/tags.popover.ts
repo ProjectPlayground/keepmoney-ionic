@@ -1,9 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-
-import {Platform, NavParams, AlertController, LoadingController, ItemSliding} from 'ionic-angular';
-import {FormBuilder} from "@angular/forms";
+import {Component, OnInit} from "@angular/core";
+import {Platform, NavParams, AlertController, LoadingController, ItemSliding} from "ionic-angular";
 import {TagsProvider} from "../../providers/tags";
-import _ from 'underscore';
+import _ from "underscore";
+import {Tag} from "../../models/tag";
 
 @Component({
   selector:'popover-tags',
@@ -11,13 +10,12 @@ import _ from 'underscore';
   providers: []
 })
 export class TagsPopover implements OnInit{
-  public tags:any;
+  public tags:Tag[];
   public editableTagId:any;
   public editableTagName:string;
 
   constructor(
     public platform: Platform,
-    public formBuilder: FormBuilder,
     public loadingCtrl: LoadingController,
     private alertController:AlertController,
     private navParams: NavParams,
@@ -38,8 +36,7 @@ export class TagsPopover implements OnInit{
     this.tagsService.remove(tag['_id']).subscribe(
       data => {
         _.forEach(this.tags, () => this.tags.pop());
-        _.forEach(data['collection'], (tag) => this.tags.push(tag));
-        console.log(data);
+        _.forEach(data['collection'], (tag) => this.tags.push(Tag.fromJson(tag)));
         loader.dismissAll();
       },
       err => {
@@ -62,8 +59,7 @@ export class TagsPopover implements OnInit{
   updateTag() {
     if (_.isEmpty(this.editableTagName)) return;
     let loader = this.buildAndShowLoader();
-
-    var tag = _.where(this.tags, {_id: this.editableTagId})[0];
+    let tag = _.where(this.tags, {_id: this.editableTagId})[0];
 
     this.tagsService.update(this.editableTagId, this.editableTagName).subscribe(
       data => {

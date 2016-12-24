@@ -13,13 +13,15 @@ import {PurchasePageProvider} from "../../providers/purchase.page";
 import {PurchaseProvider} from "../../providers/purchase";
 import {PurchaseUtils} from "../../utils/purchase.utils";
 import {PurchaseGroupedList} from "../../models/purchaseGroupedList";
+import {Tag} from "../../models/tag";
+import {TagUtils} from "../../utils/tag.utils";
 
 @Component({
   selector: 'page-purchases',
   templateUrl: 'purchases.html',
 })
 export class PurchasesPage {
-  public tags:any;
+  public tags:Tag[];
   public actionSheet: any;
   public isLoading:boolean = true;
   private groupedList: PurchaseGroupedList;
@@ -37,7 +39,7 @@ export class PurchasesPage {
 
     this.purchasesPageService.get().subscribe((response) => {
       this.groupedList.updateList(PurchaseUtils.parseList(response.purchases));
-      this.tags = response.tags;
+      this.tags = TagUtils.parseList(response.tags);
       this.isLoading = false;
     });
   }
