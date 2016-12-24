@@ -14,7 +14,6 @@ import {PurchaseProvider} from "../../providers/purchase";
 import {PurchaseUtils} from "../../utils/purchase.utils";
 import {PurchaseGroupedList} from "../../models/purchaseGroupedList";
 import {Tag} from "../../models/tag";
-import {TagUtils} from "../../utils/tag.utils";
 
 @Component({
   selector: 'page-purchases',
@@ -38,8 +37,8 @@ export class PurchasesPage {
     this.groupedList = new PurchaseGroupedList();
 
     this.purchasesPageService.get().subscribe((response) => {
-      this.groupedList.updateList(PurchaseUtils.parseList(response.purchases));
-      this.tags = TagUtils.parseList(response.tags);
+      this.groupedList.updateList(response.purchases);
+      this.tags = response.tags;
       this.isLoading = false;
     });
   }
