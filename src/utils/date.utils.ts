@@ -25,5 +25,11 @@ export class DateUtils {
   public static endOfWeek(): Date {
     return moment(new Date()).endOf('week').isoWeekday(0).toDate();
   }
+
+  public static isDayOfThisMonth(date: Date): boolean {
+    var begin = moment().format("YYYY-MM-01");
+    var end = moment().format("YYYY-MM-") + moment().daysInMonth();
+    return moment.range(begin, end).contains(date);
+  }
 }
 

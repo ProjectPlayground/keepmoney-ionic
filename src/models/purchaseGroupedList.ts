@@ -27,6 +27,7 @@ export class PurchaseGroupedList {
     let groupedList:IPurchaseGroup[] = [];
 
     _.forEach(sortedDates, (date) => groupedList.push({
+      visible: true,
       date: DateUtils.fromString(date),
       collection: groupedByDate[date]
     }));
@@ -40,5 +41,23 @@ export class PurchaseGroupedList {
 
   public asList(): Purchase[] {
     return this.originalList;
+  }
+
+  public onlyThisWeek() {
+    _.each(this.groupedList, (group) => {
+      group.visible = DateUtils.isDayOfThisWeek(group.date);
+    });
+  }
+
+  public forThisMonth() {
+    _.each(this.groupedList, (group) => {
+      group.visible = DateUtils.isDayOfThisMonth(group.date);
+    });
+  }
+
+  public forAllPeriod() {
+    _.each(this.groupedList, (group) => {
+      group.visible = true;
+    });
   }
 }
