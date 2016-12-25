@@ -7,6 +7,9 @@ import {TranslateService} from 'ng2-translate/ng2-translate';
 import {UserProvider} from "../providers/user";
 import {BoardTabsPage} from "../pages/tabs/board/board.tabs";
 
+import * as moment_ from 'moment';
+export const moment =  moment_["default"];
+
 @Component({
   template: `<ion-nav [root]="rootPage"></ion-nav>`,
   providers: [TranslateService]
@@ -23,7 +26,8 @@ export class MyApp {
       events.subscribe('user:login', () => this.setUpTab());
       events.subscribe('user:logout', () => {
         users.logOut();
-        this.setUpTab()
+        this.setUpTab();
+        this.setUpMoment();
       });
     });
   }
@@ -38,5 +42,13 @@ export class MyApp {
 
   setUpTab() {
     this.rootPage = this.users.isLoggedIn() ? BoardTabsPage : WelcomeTabsPage;
+  }
+
+  setUpMoment() {
+    moment.fn.weekdayWithStartWeekday = function (targetWeekday, startDayOfWeek) {
+      var weekday = (this.day() + 7 - startDayOfWeek) % 7;
+      return this.add("d", targetWeekday - weekday);
+    }
+    moment().weekdayWithStartWeekday(0, 1);
   }
 }
