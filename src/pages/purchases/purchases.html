@@ -21,6 +21,8 @@
 
     <ion-item-group *ngFor="let group of groupedList.asGroup(); let ind = index" no-lines>
 
+      <div *ngIf="group.visible">
+
       <ion-item-divider light class="item-divider" [class.first]="ind == 0">
         <ion-icon name="calendar"></ion-icon>
         <span class="purchases-divider">{{group.date | date:'dd.MM.yyyy'}}</span>
@@ -53,12 +55,20 @@
           </button>
         </ion-item-options>
       </ion-item-sliding>
-
+      </div>
     </ion-item-group>
   </ion-list>
   <ion-footer>
     <ion-toolbar>
       <ion-title>Всього витрачено <b>{{getTotalMoneySpent()}}</b> у.о.</ion-title>
+      <ion-item>
+        <ion-label>Filter</ion-label>
+        <ion-select [(ngModel)]="filter" (ngModelChange)="filtration()">
+          <ion-option value="all" >All</ion-option>
+          <ion-option value="week">Week</ion-option>
+          <ion-option value="month">Month</ion-option>
+        </ion-select>
+      </ion-item>
     </ion-toolbar>
   </ion-footer>
 </ion-content>

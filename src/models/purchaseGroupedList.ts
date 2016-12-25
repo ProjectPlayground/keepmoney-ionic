@@ -44,20 +44,14 @@ export class PurchaseGroupedList {
   }
 
   public onlyThisWeek() {
-    _.each(this.groupedList, (group) => {
-      group.visible = DateUtils.isDayOfThisWeek(group.date);
-    });
+    _.each(this.groupedList, (group) => group.visible = DateUtils.isDayOfThisWeek(group.date));
   }
 
-  public forThisMonth() {
-    _.each(this.groupedList, (group) => {
-      group.visible = DateUtils.isDayOfThisMonth(group.date);
-    });
+  public onlyThisMonth() {
+    _.each(this.groupedList, (group) => group.visible = DateUtils.isDayOfThisMonth(group.date));
   }
 
   public forAllPeriod() {
-    _.each(this.groupedList, (group) => {
-      group.visible = true;
-    });
+    _.each(this.groupedList, (group) => group.visible = true);
   }
 }

@@ -22,6 +22,7 @@ import {Tag} from "../../models/tag";
 export class PurchasesPage {
   public tags:Tag[];
   public actionSheet: any;
+  public filter: any;
   public isLoading:boolean = true;
   private groupedList: PurchaseGroupedList;
 
@@ -35,24 +36,46 @@ export class PurchasesPage {
 
     this.tags = [];
     this.groupedList = new PurchaseGroupedList();
+    this.filter = 'week';
 
     this.purchasesPageService.get().subscribe((response) => {
       this.groupedList.updateList(response.purchases);
       this.tags = response.tags;
       this.isLoading = false;
+      this.filtration();
     });
+  }
+
+  filtration() {
+    switch (this.filter) {
+      case 'month':
+        this.groupedList.onlyThisMonth();
+        break;
+      case 'week':
+        this.groupedList.onlyThisWeek();
+        break;
+      default:
+        this.groupedList.forAllPeriod();
+        break;
+    }
   }
 
   addNew() {
     let modal = this.modalCtrl.create(PurchaseCreateEditModal, {tags: this.tags});
     modal.present();
-    modal.onWillDismiss((response) => this.groupedList.updateList(response));
+    modal.onWillDismiss((response) => {
+      this.groupedList.updateList(response);
+      this.filtration();
+    });
   }
 
   edit(purchase, slidingItem: ItemSliding) {
     let modal = this.modalCtrl.create(PurchaseCreateEditModal, {purchase: purchase,tags: this.tags});
     modal.present();
-    modal.onWillDismiss((response) => this.groupedList.updateList(response));
+    modal.onWillDismiss((response) => {
+      this.groupedList.updateList(response);
+      this.filtration();
+    });
 
     slidingItem.close();
   }
@@ -67,6 +90,7 @@ export class PurchasesPage {
       data => {
         loader.dismissAll();
         this.groupedList.updateList(data);
+        this.filtration();
       },
       err => {
         loader.dismissAll();
