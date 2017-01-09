@@ -12,7 +12,10 @@
 </ion-header>
 
 <ion-content padding class="purchases-content">
- <!-- <filter-purchases></filter-purchases>-->
+  <ion-toolbar>
+    <ion-title>Всього витрачено <b>{{getTotalMoneySpent()}}</b> у.о.</ion-title>
+    <filter-purchases (onFilterApply)="applyFilter($event)"></filter-purchases>
+  </ion-toolbar>
   <ion-list>
 
     <ion-item *ngIf="isLoading" text-center>
@@ -58,17 +61,4 @@
       </div>
     </ion-item-group>
   </ion-list>
-  <ion-footer>
-    <ion-toolbar>
-      <ion-title>Всього витрачено <b>{{getTotalMoneySpent()}}</b> у.о.</ion-title>
-      <ion-item>
-        <ion-label>Filter</ion-label>
-        <ion-select [(ngModel)]="filter" (ngModelChange)="filtration()">
-          <ion-option value="all" >All</ion-option>
-          <ion-option value="week">Week</ion-option>
-          <ion-option value="month">Month</ion-option>
-        </ion-select>
-      </ion-item>
-    </ion-toolbar>
-  </ion-footer>
 </ion-content>

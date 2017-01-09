@@ -11,7 +11,6 @@ import {
 import {TagsPopover} from "../../popovers/tags/tags.popover";
 import {PurchasePageProvider} from "../../providers/purchase.page";
 import {PurchaseProvider} from "../../providers/purchase";
-import {PurchaseUtils} from "../../utils/purchase.utils";
 import {PurchaseGroupedList} from "../../models/purchaseGroupedList";
 import {Tag} from "../../models/tag";
 
@@ -42,17 +41,20 @@ export class PurchasesPage {
       this.groupedList.updateList(response.purchases);
       this.tags = response.tags;
       this.isLoading = false;
-      this.filtration();
+      this.groupedList.onlyThisWeek();
     });
   }
 
-  filtration() {
-    switch (this.filter) {
+  applyFilter(filterEvent) {
+    switch (filterEvent.event) {
       case 'month':
         this.groupedList.onlyThisMonth();
         break;
       case 'week':
         this.groupedList.onlyThisWeek();
+        break;
+      case 'period':
+        this.groupedList.forPeriod(filterEvent.data.from, filterEvent.data.to);
         break;
       default:
         this.groupedList.forAllPeriod();
@@ -65,7 +67,7 @@ export class PurchasesPage {
     modal.present();
     modal.onWillDismiss((response) => {
       this.groupedList.updateList(response);
-      this.filtration();
+      //this.filtration();
     });
   }
 
@@ -74,7 +76,7 @@ export class PurchasesPage {
     modal.present();
     modal.onWillDismiss((response) => {
       this.groupedList.updateList(response);
-      this.filtration();
+      //this.filtration();
     });
 
     slidingItem.close();
@@ -90,7 +92,7 @@ export class PurchasesPage {
       data => {
         loader.dismissAll();
         this.groupedList.updateList(data);
-        this.filtration();
+        //this.filtration();
       },
       err => {
         loader.dismissAll();

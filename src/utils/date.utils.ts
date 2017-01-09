@@ -31,5 +31,9 @@ export class DateUtils {
     var end = moment().format("YYYY-MM-") + moment().daysInMonth();
     return moment.range(begin, end).contains(date);
   }
+
+  public static isDayOfThePeriod(date: Date, from: Date, to: Date): boolean {
+    return moment.range(from, to).contains(date);
+  }
 }
 
