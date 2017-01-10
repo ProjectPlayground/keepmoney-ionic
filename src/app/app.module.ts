@@ -24,6 +24,7 @@ import {ChartsPage} from "../pages/charts/charts";
 import '../../node_modules/chart.js/dist/Chart.min.js'; // and
 import { ChartsModule } from 'ng2-charts/components/charts/charts';
 import {TagCreateInput} from "../components/tag/create-input/tag.create.input";
+import {FilterPurchaseProvider} from "../providers/filter.purchase";
 
 
 @NgModule({
@@ -78,7 +79,7 @@ import {TagCreateInput} from "../components/tag/create-input/tag.create.input";
     PurchasesFilter,
     TagCreateInput
   ],
-  providers: [TranslateService, UserProvider, PurchaseProvider, TagsProvider, PurchasePageProvider]
+  providers: [TranslateService, UserProvider, PurchaseProvider, TagsProvider, PurchasePageProvider, FilterPurchaseProvider]
 })
 export class AppModule {}
 

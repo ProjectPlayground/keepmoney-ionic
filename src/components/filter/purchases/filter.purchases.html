@@ -1,15 +1,32 @@
-<form [formGroup]="filterForm">
-  <ion-list no-lines>
-    <ion-item>
-      <ion-label fixed>Дата</ion-label>
-      <ion-datetime #from formControlName="from" displayFormat="MM/DD/YYYY" pickerFormat="MMMM/DD/YYYY"
-                    required="required" [(ngModel)]="filterForm.from"></ion-datetime>
-    </ion-item>
-
-    <ion-item>
-      <ion-label fixed>Дата</ion-label>
-      <ion-datetime #to formControlName="to" displayFormat="MM/DD/YYYY" pickerFormat="MMMM/DD/YYYY" required="required"
-                    [(ngModel)]="filterForm.to"></ion-datetime>
-    </ion-item>
-  </ion-list>
-</form>
+<ion-grid>
+    <ion-row>
+      <ion-col width-20>
+        <ion-item>
+          <ion-label>Filter</ion-label>
+          <ion-select [(ngModel)]="filter">
+            <ion-option *ngFor="let option of options" [value]="option.value" >{{option.title}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col width-10>
+        <button ion-button icon-only (click)="apply()">
+          <ion-icon name="checkmark" ></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  <ion-row *ngIf="filter == 'period'">
+    <ion-list no-lines>
+      <ion-item>
+        <ion-label fixed>Від</ion-label>
+        <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MMMM/DD/YYYY"
+                      max="{{period.to}}"
+                      required="required" [(ngModel)]="period.from"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>До</ion-label>
+        <ion-datetime min="{{period.from}}" displayFormat="MM/DD/YYYY" pickerFormat="MMMM/DD/YYYY" required="required"
+                      [(ngModel)]="period.to"></ion-datetime>
+      </ion-item>
+    </ion-list>
+  </ion-row>
+  </ion-grid>

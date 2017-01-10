@@ -54,4 +54,9 @@ export class PurchaseGroupedList {
   public forAllPeriod() {
     _.each(this.groupedList, (group) => group.visible = true);
   }
+
+  public forPeriod(from:string, to:string) {
+    if (_.isEmpty(from) || _.isEmpty(to)) {return;}
+    _.each(this.groupedList, (group) => group.visible = DateUtils.isDayOfThePeriod(group.date, DateUtils.fromString(from), DateUtils.fromString(to)));
+  }
 }
