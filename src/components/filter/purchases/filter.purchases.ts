@@ -1,6 +1,7 @@
 import {Component, Output} from "@angular/core";
 import {EventEmitter} from "@angular/common/src/facade/async";
 import {DateUtils} from "../../../utils/date.utils";
+import {FilterPurchaseProvider} from "../../../providers/filter.purchase";
 
 @Component({
   selector:'filter-purchases',
@@ -21,30 +22,20 @@ export class PurchasesFilter {
       {title:'Month', value:'month'},
       {title:'Period', value:'period'},
     ];
-    this.filter = 'week';
-    this.period = {
-      from: DateUtils.today(),
-      to: DateUtils.today()
-    }
+    this.filter = FilterPurchaseProvider.action;
+    this.period = {from: DateUtils.today(), to: DateUtils.today()}
   }
 
   apply() {
-    this.onFilterApply.emit(this.getFilterResult());
+    FilterPurchaseProvider.action = this.filter;
+    FilterPurchaseProvider.period = this.getPeriod();
+    this.onFilterApply.emit();
   }
 
-  private getFilterResult() {
+  private getPeriod() {
     return {
-      event: this.filter,
-      data: this.getData()
-    }
-  }
-
-  private getData() {
-    if (this.filter == 'period') {
-      return {
-        from: this.period.from,
-        to: this.period.to
-      }
+      from: this.period.from,
+      to: this.period.to
     }
   }
 }

@@ -19,16 +19,16 @@ export class DateUtils {
   }
 
   public static startOfWeek(): Date {
-    return moment(new Date()).startOf('week').isoWeekday(1).toDate();
+    return moment().day(1).toDate();
   }
 
   public static endOfWeek(): Date {
-    return moment(new Date()).endOf('week').isoWeekday(0).toDate();
+    return moment().day(7).toDate();
   }
 
   public static isDayOfThisMonth(date: Date): boolean {
-    var begin = moment().format("YYYY-MM-01");
-    var end = moment().format("YYYY-MM-") + moment().daysInMonth();
+    let begin = moment().format("YYYY-MM-01");
+    let end = moment().format("YYYY-MM-") + moment().daysInMonth();
     return moment.range(begin, end).contains(date);
   }
 
@@ -36,4 +36,3 @@ export class DateUtils {
     return moment.range(from, to).contains(date);
   }
 }
-

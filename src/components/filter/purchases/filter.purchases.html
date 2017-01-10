@@ -19,6 +19,7 @@
       <ion-item>
         <ion-label fixed>Від</ion-label>
         <ion-datetime displayFormat="MM/DD/YYYY" pickerFormat="MMMM/DD/YYYY"
+                      max="{{period.to}}"
                       required="required" [(ngModel)]="period.from"></ion-datetime>
       </ion-item>
       <ion-item>

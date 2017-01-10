@@ -13,6 +13,7 @@ import {PurchasePageProvider} from "../../providers/purchase.page";
 import {PurchaseProvider} from "../../providers/purchase";
 import {PurchaseGroupedList} from "../../models/purchaseGroupedList";
 import {Tag} from "../../models/tag";
+import {FilterPurchaseProvider} from "../../providers/filter.purchase";
 
 @Component({
   selector: 'page-purchases',
@@ -38,15 +39,15 @@ export class PurchasesPage {
     this.filter = 'week';
 
     this.purchasesPageService.get().subscribe((response) => {
-      this.groupedList.updateList(response.purchases);
       this.tags = response.tags;
       this.isLoading = false;
-      this.groupedList.onlyThisWeek();
+      this.updateListAndFilter(response.purchases);
     });
   }
 
-  applyFilter(filterEvent) {
-    switch (filterEvent.event) {
+  applyFilter() {
+    let period = FilterPurchaseProvider.period;
+    switch (FilterPurchaseProvider.action) {
       case 'month':
         this.groupedList.onlyThisMonth();
         break;
@@ -54,7 +55,7 @@ export class PurchasesPage {
         this.groupedList.onlyThisWeek();
         break;
       case 'period':
-        this.groupedList.forPeriod(filterEvent.data.from, filterEvent.data.to);
+        this.groupedList.forPeriod(period.from, period.to);
         break;
       default:
         this.groupedList.forAllPeriod();
@@ -66,8 +67,7 @@ export class PurchasesPage {
     let modal = this.modalCtrl.create(PurchaseCreateEditModal, {tags: this.tags});
     modal.present();
     modal.onWillDismiss((response) => {
-      this.groupedList.updateList(response);
-      //this.filtration();
+      this.updateListAndFilter(response)
     });
   }
 
@@ -75,8 +75,7 @@ export class PurchasesPage {
     let modal = this.modalCtrl.create(PurchaseCreateEditModal, {purchase: purchase,tags: this.tags});
     modal.present();
     modal.onWillDismiss((response) => {
-      this.groupedList.updateList(response);
-      //this.filtration();
+      this.updateListAndFilter(response)
     });
 
     slidingItem.close();
@@ -91,8 +90,7 @@ export class PurchasesPage {
     this.purchaseService.remove(purchase['_id']).subscribe(
       data => {
         loader.dismissAll();
-        this.groupedList.updateList(data);
-        //this.filtration();
+        this.updateListAndFilter(data);
       },
       err => {
         loader.dismissAll();
@@ -103,6 +101,11 @@ export class PurchasesPage {
       }
     );
     slidingItem.close();
+  }
+
+  private updateListAndFilter(data) {
+    this.groupedList.updateList(data);
+    this.applyFilter();
   }
 
   showTagsPopover() {
