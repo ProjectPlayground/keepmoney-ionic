@@ -31,8 +31,6 @@ export class Purchase {
       }
     });
 
-    console.log(purchase);
-
     return purchase;
   }
 }
