@@ -78,7 +78,7 @@ export class PurchasesPage {
       this.updateListAndFilter(response)
     });
 
-    slidingItem.close();
+    //slidingItem.close();
   }
 
   remove(purchase, slidingItem: ItemSliding) {
@@ -100,7 +100,7 @@ export class PurchasesPage {
         }).present();
       }
     );
-    slidingItem.close();
+    //slidingItem.close();
   }
 
   private updateListAndFilter(data) {
