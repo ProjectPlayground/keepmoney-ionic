@@ -22,7 +22,7 @@ import {OrderByPipe} from "../pipes/array.order.by.pipe";
 import {PurchasesFilter} from "../components/filter/purchases/filter.purchases";
 import {ChartsPage} from "../pages/charts/charts";
 import '../../node_modules/chart.js/dist/Chart.min.js'; // and
-import { ChartsModule } from 'ng2-charts/components/charts/charts';
+// import { ChartsModule } from 'ng2-charts/components/charts/charts';
 import {TagCreateInput} from "../components/tag/create-input/tag.create.input";
 import {FilterPurchaseProvider} from "../providers/filter.purchase";
 
@@ -57,7 +57,7 @@ import {FilterPurchaseProvider} from "../providers/filter.purchase";
       deps: [Http]
     }),
     MomentModule,
-    ChartsModule
+    // ChartsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

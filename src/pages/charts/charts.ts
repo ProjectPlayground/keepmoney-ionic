@@ -2,7 +2,6 @@ import {Component} from "@angular/core";
 import {PurchasePageProvider} from "../../providers/purchase.page";
 import _ from "underscore";
 import {Tag} from "../../models/tag";
-import {TagUtils} from "../../utils/tag.utils";
 
 @Component({
   selector: 'page-charts',
