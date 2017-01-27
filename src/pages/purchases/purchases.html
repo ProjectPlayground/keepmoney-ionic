@@ -31,15 +31,14 @@
         <span class="purchases-divider">{{group.date | date:'dd.MM.yyyy'}}</span>
       </ion-item-divider>
 
-      <ion-item-sliding #slidingItem *ngFor="let purchase of group.collection">
+        <div *ngFor="let purchase of group.collection">
+
+      <ion-item-sliding #slidingItem >
 
         <ion-item class="purchase-item" no-lines>
           <div>
-            <ion-chip item-left class="amount-container">
-              <ion-icon name="cash"></ion-icon>
-              <ion-label>{{purchase.amount}}</ion-label>
-            </ion-chip>
-            {{purchase.title}}
+            <span>{{purchase.amount}}</span>
+            <span>{{purchase.title}}</span>
           </div>
 
           <div>
@@ -58,6 +57,7 @@
           </button>
         </ion-item-options>
       </ion-item-sliding>
+        </div>
       </div>
     </ion-item-group>
   </ion-list>
